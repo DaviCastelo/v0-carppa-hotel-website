@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color palette for Carppa Hotel brand */
+  --background: #f5e6d3; /* Beige sand */
+  --foreground: #1e3d58; /* Teal blue */
+  --card: #ffffff; /* White cards */
+  --card-foreground: #1e3d58; /* Teal blue text on cards */
+  --popover: #ffffff; /* White */
+  --popover-foreground: #1e3d58; /* Teal blue */
+  --primary: #1e3d58; /* Teal blue primary */
+  --primary-foreground: #ffffff; /* White text on primary */
+  --secondary: #c2653d; /* Terracotta orange */
+  --secondary-foreground: #ffffff; /* White text on secondary */
+  --muted: #6c6c6c; /* Warm gray */
+  --muted-foreground: #1e3d58; /* Teal blue */
+  --accent: #c2653d; /* Terracotta orange accent */
+  --accent-foreground: #ffffff; /* White text on accent */
+  --destructive: #dc2626; /* Red for errors */
+  --destructive-foreground: #ffffff; /* White */
+  --border: #4b6f44; /* Green foliage for borders */
+  --input: #ffffff; /* White inputs */
+  --ring: #1e3d58; /* Teal blue focus ring */
+  --chart-1: #c2653d; /* Terracotta orange */
+  --chart-2: #1e3d58; /* Teal blue */
+  --chart-3: #4b6f44; /* Green foliage */
+  --chart-4: #f5e6d3; /* Beige */
+  --chart-5: #6c6c6c; /* Warm gray */
+  --radius: 0.5rem;
+  --sidebar: #f5e6d3; /* Beige */
+  --sidebar-foreground: #1e3d58; /* Teal blue */
+  --sidebar-primary: #c2653d; /* Terracotta orange */
+  --sidebar-primary-foreground: #ffffff; /* White */
+  --sidebar-accent: #1e3d58; /* Teal blue */
+  --sidebar-accent-foreground: #ffffff; /* White */
+  --sidebar-border: #4b6f44; /* Green foliage */
+  --sidebar-ring: #c2653d; /* Terracotta orange */
+}
+
+.dark {
+  --background: #1e3d58;
+  --foreground: #f5e6d3;
+  --card: #1e3d58;
+  --card-foreground: #f5e6d3;
+  --popover: #1e3d58;
+  --popover-foreground: #f5e6d3;
+  --primary: #f5e6d3;
+  --primary-foreground: #1e3d58;
+  --secondary: #c2653d;
+  --secondary-foreground: #ffffff;
+  --muted: #4b6f44;
+  --muted-foreground: #f5e6d3;
+  --accent: #c2653d;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #4b6f44;
+  --input: #4b6f44;
+  --ring: #c2653d;
+  --chart-1: #c2653d;
+  --chart-2: #f5e6d3;
+  --chart-3: #4b6f44;
+  --chart-4: #6c6c6c;
+  --chart-5: #ffffff;
+  --sidebar: #1e3d58;
+  --sidebar-foreground: #f5e6d3;
+  --sidebar-primary: #c2653d;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #4b6f44;
+  --sidebar-accent-foreground: #f5e6d3;
+  --sidebar-border: #4b6f44;
+  --sidebar-ring: #c2653d;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
