@@ -1,3 +1,5 @@
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
@@ -6,92 +8,85 @@ import { Bed, Users, Star } from "lucide-react"
 
 const rooms = [
   {
-    id: "suite-executiva",
-    name: "Suíte Executiva",
-    description: "Espaçosa suíte com vista panorâmica da cidade, ideal para executivos e viajantes de negócios.",
-    price: "R$ 450",
-    image: "/luxury-hotel-executive-suite-with-city-view.jpg",
-    capacity: "2 pessoas",
-    size: "45m²",
-    amenities: ["Wi-Fi gratuito", "Ar condicionado", "Frigobar", 'TV 55"', "Banheira", "Varanda"],
-    rating: 4.8,
-    reviews: 124,
-  },
-  {
-    id: "quarto-standard",
-    name: "Quarto Standard",
-    description: "Confortável quarto com todas as comodidades essenciais para uma estadia agradável.",
-    price: "R$ 280",
-    image: "/comfortable-hotel-standard-room-with-modern-decor.jpg",
-    capacity: "2 pessoas",
-    size: "28m²",
-    amenities: ["Wi-Fi gratuito", "Ar condicionado", "Frigobar", 'TV 42"', "Cofre"],
+    id: "standard-duplo",
+    name: "Standard Duplo",
+    description: "Nossos apartamentos são totalmente preparados para descanso e comodidade, todos equipados com ar condicionado individual, telefone com linha direta, cofre, frigobar, internet wi-fi e TV LCD com canais por assinatura.",
+    price: "R$ 240",
+    image: "/modern-hotel-room-with-double-bed.jpg",
+    capacity: "3 pessoas",
+    size: "25m²",
+    beds: "1 cama de casal",
+    bathrooms: 1,
+    hasSuite: false,
+    amenities: [
+      "Ar Condicionado",
+      "Cofre", 
+      "Internet Wireless",
+      "Mini-Bar",
+      "Telefone com linha direta",
+      "TV LCD com canais por assinatura"
+    ],
     rating: 4.5,
     reviews: 89,
+    reservationUrl: "https://book.omnibees.com/hotel/1393/room/33108?c=1159&q=1393",
   },
   {
-    id: "suite-familiar",
-    name: "Suíte Familiar",
-    description: "Ampla suíte perfeita para famílias, com espaço adicional e comodidades especiais.",
-    price: "R$ 380",
-    image: "/spacious-family-hotel-suite-with-separate-living-a.jpg",
+    id: "standard-triplo", 
+    name: "Standard Triplo",
+    description: "Nossos apartamentos são totalmente preparados para descanso e comodidade, todos equipados com ar condicionado individual, telefone com linha direta, cofre, frigobar, internet wi-fi e TV LCD com canais por assinatura.",
+    price: "R$ 300",
+    image: "/deluxe-hotel-room-with-double-bed-and-single-bed.jpg",
+    capacity: "3 pessoas",
+    size: "30m²", 
+    beds: "1 cama de casal + 1 solteiro",
+    bathrooms: 1,
+    hasSuite: false,
+    amenities: [
+      "Ar Condicionado",
+      "Cofre",
+      "Internet Wireless", 
+      "Mini-Bar",
+      "Telefone com linha direta",
+      "TV LCD com canais por assinatura"
+    ],
+    rating: 4.6,
+    reviews: 112,
+    reservationUrl: "https://book.omnibees.com/hotel/1393/room/33109?c=1159&q=1393",
+  },
+  {
+    id: "standard-quadruplo",
+    name: "Standard Quadruplo", 
+    description: "Nossos apartamentos são totalmente preparados para descanso e comodidade, todos equipados com ar condicionado individual, telefone com linha direta, cofre, frigobar, internet wi-fi e TV LCD com canais por assinatura.",
+    price: "R$ 294,40",
+    image: "/family-hotel-room-with-multiple-beds.jpg",
     capacity: "4 pessoas",
-    size: "55m²",
-    amenities: ["Wi-Fi gratuito", "Ar condicionado", "Frigobar", 'TV 50"', "Sofá-cama", "Varanda"],
+    size: "35m²",
+    beds: "2 camas de casal",
+    bathrooms: 1,
+    hasSuite: false,
+    amenities: [
+      "Ar Condicionado",
+      "Cofre",
+      "Internet Wireless",
+      "Banheiro privado",
+      "Telefone",
+      "Apartamento para não Fumantes",
+      "Mini-Bar",
+      "TV LCD com canais por assinatura"
+    ],
     rating: 4.7,
     reviews: 156,
-  },
-  {
-    id: "quarto-deluxe",
-    name: "Quarto Deluxe",
-    description: "Quarto elegante com acabamentos premium e vista para o jardim do hotel.",
-    price: "R$ 350",
-    image: "/elegant-deluxe-hotel-room-with-garden-view-and-pre.jpg",
-    capacity: "2 pessoas",
-    size: "35m²",
-    amenities: ["Wi-Fi gratuito", "Ar condicionado", "Frigobar", 'TV 50"', "Varanda", "Roupões"],
-    rating: 4.6,
-    reviews: 98,
-  },
-  {
-    id: "suite-presidencial",
-    name: "Suíte Presidencial",
-    description: "Nossa suíte mais luxuosa com sala de estar separada, jacuzzi e serviço personalizado.",
-    price: "R$ 750",
-    image: "/luxury-presidential-hotel-suite-with-jacuzzi-and-s.jpg",
-    capacity: "2 pessoas",
-    size: "80m²",
-    amenities: [
-      "Wi-Fi gratuito",
-      "Ar condicionado",
-      "Frigobar",
-      'TV 65"',
-      "Jacuzzi",
-      "Sala de estar",
-      "Serviço de quarto 24h",
-    ],
-    rating: 4.9,
-    reviews: 67,
-  },
-  {
-    id: "quarto-economico",
-    name: "Quarto Econômico",
-    description: "Opção acessível sem abrir mão do conforto e qualidade do Carppa Hotel.",
-    price: "R$ 180",
-    image: "/comfortable-budget-hotel-room-with-essential-ameni.jpg",
-    capacity: "2 pessoas",
-    size: "22m²",
-    amenities: ["Wi-Fi gratuito", "Ar condicionado", 'TV 32"', "Cofre"],
-    rating: 4.3,
-    reviews: 203,
-  },
+    reservationUrl: "https://book.omnibees.com/hotel/1393/room/62316?c=9354&q=1393&NRooms=1&CheckIn=12032026&CheckOut=13032026&ad=1&ch=0&lang=pt-BR&currencyId=16&version=4",
+  }
 ]
 
 export default function QuartosPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background">
+      <Header />
+
       {/* Header Spacing */}
-      <div className="h-20"></div>
+      <div className="pt-20"></div>
 
       {/* Hero Section */}
       <section className="bg-primary text-primary-foreground py-16">
@@ -117,31 +112,31 @@ export default function QuartosPage() {
                     height={300}
                     className="w-full h-64 object-cover"
                   />
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-primary">
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-black">
                     {room.price}/noite
                   </div>
                 </div>
 
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold text-primary">{room.name}</h3>
+                    <h3 className="text-xl font-bold text-black">{room.name}</h3>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                       <span className="text-sm font-medium">{room.rating}</span>
-                      <span className="text-sm text-muted-foreground">({room.reviews})</span>
+                      <span className="text-sm text-black">({room.reviews})</span>
                     </div>
                   </div>
 
-                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{room.description}</p>
+                  <p className="text-black mb-4 text-sm leading-relaxed">{room.description}</p>
 
-                  <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-4 mb-4 text-sm text-black">
                     <div className="flex items-center gap-1">
                       <Users className="w-4 h-4" />
                       <span>{room.capacity}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Bed className="w-4 h-4" />
-                      <span>{room.size}</span>
+                      <span>{room.beds}</span>
                     </div>
                   </div>
 
@@ -149,12 +144,12 @@ export default function QuartosPage() {
                     <h4 className="font-semibold mb-2 text-sm">Comodidades:</h4>
                     <div className="flex flex-wrap gap-2">
                       {room.amenities.slice(0, 3).map((amenity, index) => (
-                        <span key={index} className="bg-muted text-muted-foreground px-2 py-1 rounded-full text-xs">
+                        <span key={index} className="bg-muted text-black px-2 py-1 rounded-full text-xs">
                           {amenity}
                         </span>
                       ))}
                       {room.amenities.length > 3 && (
-                        <span className="text-xs text-muted-foreground">+{room.amenities.length - 3} mais</span>
+                        <span className="text-xs text-black">+{room.amenities.length - 3} mais</span>
                       )}
                     </div>
                   </div>
@@ -164,7 +159,7 @@ export default function QuartosPage() {
                       <Link href={`/quartos/${room.id}`}>Ver Detalhes</Link>
                     </Button>
                     <Button asChild variant="outline" className="flex-1 bg-transparent">
-                      <Link href={`/reserva?quarto=${room.id}`}>Reservar</Link>
+                      <Link href={room.reservationUrl} target="_blank" rel="noopener noreferrer">Reservar</Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -178,7 +173,7 @@ export default function QuartosPage() {
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4 text-primary">Precisa de Ajuda para Escolher?</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-black mb-8 max-w-2xl mx-auto">
             Nossa equipe está pronta para ajudá-lo a encontrar a acomodação perfeita para sua estadia
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -191,6 +186,8 @@ export default function QuartosPage() {
           </div>
         </div>
       </section>
-    </div>
+
+      <Footer />
+    </main>
   )
 }

@@ -31,15 +31,15 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <MapPin size={18} />
-                <span>Rua das Flores, 123 - Centro</span>
+                <span className="text-primary-foreground">Av. Almirante Barroso, 701 - Praia de Iracema, Fortaleza - CE, 60060-440</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={18} />
-                <span>(11) 9999-9999</span>
+                <span className="text-primary-foreground">(85) 3085-5168</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={18} />
-                <span>contato@carppahotel.com</span>
+                <span className="text-primary-foreground">contato@carppahotel.com</span>
               </div>
             </div>
           </div>

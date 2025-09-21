@@ -18,8 +18,8 @@ export function AboutSection() {
 
           {/* Content */}
           <div className="order-1 lg:order-2">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Sobre o Carppa Hotel</h2>
-            <div className="space-y-4 text-muted text-lg leading-relaxed">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Sobre o Carppa Hotel</h2>
+            <div className="space-y-4 text-black text-lg leading-relaxed">
               <p>
                 O Carppa Hotel oferece uma experiência única de hospitalidade, combinando conforto moderno com a
                 calorosa tradição brasileira.

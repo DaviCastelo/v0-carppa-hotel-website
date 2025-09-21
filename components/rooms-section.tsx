@@ -7,45 +7,38 @@ import { Users, Bed, Bath, Sofa } from "lucide-react"
 
 const rooms = [
   {
-    id: "standard",
-    name: "Quarto Standard",
-    capacity: 2,
+    id: "standard-duplo",
+    name: "Standard Duplo",
+    price: "R$ 240",
+    image: "/modern-hotel-room-with-double-bed.jpg",
+    capacity: "3 pessoas",
     beds: "1 cama de casal",
     bathrooms: 1,
     hasSuite: false,
-    price: "180,00",
-    image: "/modern-hotel-room-with-double-bed.jpg",
+    reservationUrl: "https://book.omnibees.com/hotel/1393/room/33108?c=1159&q=1393",
   },
   {
-    id: "deluxe",
-    name: "Quarto Deluxe",
-    capacity: 3,
+    id: "standard-triplo", 
+    name: "Standard Triplo",
+    price: "R$ 300",
+    image: "/deluxe-hotel-room-with-double-bed-and-single-bed.jpg",
+    capacity: "3 pessoas",
     beds: "1 cama de casal + 1 solteiro",
     bathrooms: 1,
     hasSuite: false,
-    price: "250,00",
-    image: "/deluxe-hotel-room-with-double-bed-and-single-bed.jpg",
+    reservationUrl: "https://book.omnibees.com/hotel/1393/room/33109?c=1159&q=1393",
   },
   {
-    id: "suite",
-    name: "Suíte Master",
-    capacity: 4,
-    beds: "1 cama king size",
-    bathrooms: 2,
-    hasSuite: true,
-    price: "380,00",
-    image: "/luxury-hotel-suite-with-king-bed-and-living-area.jpg",
-  },
-  {
-    id: "family",
-    name: "Quarto Família",
-    capacity: 5,
-    beds: "1 cama de casal + 2 solteiros",
-    bathrooms: 2,
-    hasSuite: false,
-    price: "320,00",
+    id: "standard-quadruplo",
+    name: "Standard Quadruplo", 
+    price: "R$ 294,40",
     image: "/family-hotel-room-with-multiple-beds.jpg",
-  },
+    capacity: "4 pessoas",
+    beds: "2 camas de casal",
+    bathrooms: 1,
+    hasSuite: false,
+    reservationUrl: "https://book.omnibees.com/hotel/1393/room/62316?c=9354&q=1393&NRooms=1&CheckIn=12032026&CheckOut=13032026&ad=1&ch=0&lang=pt-BR&currencyId=16&version=4",
+  }
 ]
 
 export function RoomsSection() {
@@ -53,14 +46,14 @@ export function RoomsSection() {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Nossos Quartos</h2>
-          <p className="text-muted text-lg max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Nossos Quartos</h2>
+          <p className="text-black text-lg max-w-2xl mx-auto">
             Escolha o quarto perfeito para sua estadia. Todos os nossos quartos oferecem conforto, elegância e todas as
             comodidades necessárias.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {rooms.map((room) => (
             <Card key={room.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
@@ -72,32 +65,32 @@ export function RoomsSection() {
                   className="w-full h-64 object-cover"
                 />
                 <Badge className="absolute top-4 right-4 bg-secondary text-secondary-foreground">
-                  A partir de R$ {room.price}
+                  A partir de {room.price}
                 </Badge>
               </div>
 
               <CardHeader>
-                <CardTitle className="text-primary">{room.name}</CardTitle>
+                <CardTitle className="text-black">{room.name}</CardTitle>
               </CardHeader>
 
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex items-center space-x-2 text-muted">
+                  <div className="flex items-center space-x-2 text-black">
                     <Users size={18} />
-                    <span>Até {room.capacity} pessoas</span>
+                    <span>Até {room.capacity}</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-muted">
+                  <div className="flex items-center space-x-2 text-black">
                     <Bed size={18} />
                     <span>{room.beds}</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-muted">
+                  <div className="flex items-center space-x-2 text-black">
                     <Bath size={18} />
                     <span>
                       {room.bathrooms} banheiro{room.bathrooms > 1 ? "s" : ""}
                     </span>
                   </div>
                   {room.hasSuite && (
-                    <div className="flex items-center space-x-2 text-muted">
+                    <div className="flex items-center space-x-2 text-black">
                       <Sofa size={18} />
                       <span>Sala de estar</span>
                     </div>
@@ -105,9 +98,12 @@ export function RoomsSection() {
                 </div>
               </CardContent>
 
-              <CardFooter>
-                <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+              <CardFooter className="flex gap-2">
+                <Button asChild className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
                   <Link href={`/quartos/${room.id}`}>Saiba Mais</Link>
+                </Button>
+                <Button asChild variant="outline" className="flex-1 bg-transparent">
+                  <Link href={room.reservationUrl} target="_blank" rel="noopener noreferrer">Reservar</Link>
                 </Button>
               </CardFooter>
             </Card>
