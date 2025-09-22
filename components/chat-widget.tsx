@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card"
 import { MessageCircle, X, Calendar, MapPin, Building, BookOpen, Send, ChevronLeft, ChevronRight, Maximize2, Minimize2 } from "lucide-react"
 import Link from "next/link"
 
-type QuotationStep = 'initial' | 'dates' | 'rooms' | 'adults' | 'children' | 'complete' | 'location' | 'support'
+type QuotationStep = 'initial' | 'dates' | 'roomType' | 'rooms' | 'adults' | 'children' | 'complete' | 'location' | 'support'
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,6 +15,7 @@ export function ChatWidget() {
   const [quotationData, setQuotationData] = useState({
     checkIn: '',
     checkOut: '',
+    roomType: '',
     rooms: 1,
     adults: 1,
     children: 0
@@ -26,7 +27,7 @@ export function ChatWidget() {
     {
       icon: Calendar,
       label: "Cotação",
-      action: () => setQuotationStep('dates')
+      action: () => setQuotationStep('roomType')
     },
     {
       icon: MapPin,
@@ -41,7 +42,16 @@ export function ChatWidget() {
   ]
 
   const generateQuotationUrl = () => {
-    const baseUrl = "https://book.omnibees.com/hotel/1393?c=1159&q=1393"
+    // URLs específicas para cada tipo de quarto do Carppa Hotel
+    const roomUrls = {
+      'standard-duplo': 'https://book.omnibees.com/hotel/1393/room/33108?c=1159&q=1393',
+      'standard-triplo': 'https://book.omnibees.com/hotel/1393/room/33109?c=1159&q=1393',
+      'standard-quadruplo': 'https://book.omnibees.com/hotel/1393/room/62316?c=9354&q=1393'
+    }
+    
+    const baseUrl = quotationData.roomType && roomUrls[quotationData.roomType as keyof typeof roomUrls] 
+      ? roomUrls[quotationData.roomType as keyof typeof roomUrls]
+      : "https://book.omnibees.com/hotel/1393?c=1159&q=1393"
     
     // Converter datas do formato YYYY-MM-DD para DDMMYYYY
     const formatDateForUrl = (dateStr: string) => {
@@ -69,7 +79,7 @@ export function ChatWidget() {
   }
 
   const generateWhatsAppUrl = () => {
-    const phoneNumber = "5585988901952"
+    const phoneNumber = "558534532000"
     const message = `Olá! Gostaria de falar com o atendimento do Carppa Hotel.\n\nResumo da minha solicitação:\n${supportMessage}`
     const encodedMessage = encodeURIComponent(message)
     return `https://wa.me/${phoneNumber}?text=${encodedMessage}`
@@ -104,7 +114,7 @@ export function ChatWidget() {
       setQuotationData(prev => ({ ...prev, checkIn: dateStr }))
     } else if (!quotationData.checkOut && dateStr > quotationData.checkIn) {
       setQuotationData(prev => ({ ...prev, checkOut: dateStr }))
-      setQuotationStep('rooms')
+      setQuotationStep('adults')
     }
   }
 
@@ -221,10 +231,67 @@ export function ChatWidget() {
                     </>
                   )}
 
+                  {quotationStep === 'roomType' && (
+                    <>
+                      <p className="text-sm text-gray-800 mb-4">
+                        Qual tipo de quarto você prefere?
+                      </p>
+                      <div className="space-y-2 mb-3">
+                        <Button
+                          variant={quotationData.roomType === 'standard-duplo' ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            setQuotationData(prev => ({ ...prev, roomType: 'standard-duplo' }))
+                            setQuotationStep('rooms')
+                          }}
+                          className="w-full justify-start h-10"
+                        >
+                          <Building size={16} className="mr-2" />
+                          <div className="text-left">
+                            <div className="font-semibold">Standard Duplo</div>
+                            <div className="text-xs text-gray-600">R$ 240/noite • 3 pessoas • 1 cama de casal</div>
+                          </div>
+                        </Button>
+                        
+                        <Button
+                          variant={quotationData.roomType === 'standard-triplo' ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            setQuotationData(prev => ({ ...prev, roomType: 'standard-triplo' }))
+                            setQuotationStep('rooms')
+                          }}
+                          className="w-full justify-start h-10"
+                        >
+                          <Building size={16} className="mr-2" />
+                          <div className="text-left">
+                            <div className="font-semibold">Standard Triplo</div>
+                            <div className="text-xs text-gray-600">R$ 300/noite • 3 pessoas • 1 cama de casal + 1 solteiro</div>
+                          </div>
+                        </Button>
+                        
+                        <Button
+                          variant={quotationData.roomType === 'standard-quadruplo' ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            setQuotationData(prev => ({ ...prev, roomType: 'standard-quadruplo' }))
+                            setQuotationStep('rooms')
+                          }}
+                          className="w-full justify-start h-10"
+                        >
+                          <Building size={16} className="mr-2" />
+                          <div className="text-left">
+                            <div className="font-semibold">Standard Quadruplo</div>
+                            <div className="text-xs text-gray-600">R$ 294,40/noite • 4 pessoas • 2 camas de casal</div>
+                          </div>
+                        </Button>
+                      </div>
+                    </>
+                  )}
+
                   {quotationStep === 'dates' && (
                     <>
                       <p className="text-sm text-gray-800 mb-4">
-                        Perfeito! Vamos fazer sua cotação. Primeiro, escolha as datas de check-in e check-out:
+                        Perfeito! Agora escolha as datas de check-in e check-out:
                       </p>
                       
                       {/* Calendário */}
@@ -286,7 +353,7 @@ export function ChatWidget() {
                             size="sm"
                             onClick={() => {
                               setQuotationData(prev => ({ ...prev, rooms: num }))
-                              setQuotationStep('adults')
+                              setQuotationStep('dates')
                             }}
                             className="h-8 w-8"
                           >
@@ -348,13 +415,43 @@ export function ChatWidget() {
                   {quotationStep === 'complete' && (
                     <>
                       <p className="text-sm text-gray-800 mb-4">
-                        Perfeito! Clique no botão abaixo para ver sua cotação:
+                        Perfeito! Aqui está o resumo da sua cotação:
                       </p>
+                      
+                      <div className="bg-gray-50 rounded-lg p-4 mb-4">
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Tipo de Quarto:</span>
+                            <span className="font-semibold">
+                              {quotationData.roomType === 'standard-duplo' && 'Standard Duplo'}
+                              {quotationData.roomType === 'standard-triplo' && 'Standard Triplo'}
+                              {quotationData.roomType === 'standard-quadruplo' && 'Standard Quadruplo'}
+                            </span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Quantidade:</span>
+                            <span className="font-semibold">{quotationData.rooms} quarto{quotationData.rooms > 1 ? 's' : ''}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Hóspedes:</span>
+                            <span className="font-semibold">{quotationData.adults} adulto{quotationData.adults > 1 ? 's' : ''}{quotationData.children > 0 && ` + ${quotationData.children} criança${quotationData.children > 1 ? 's' : ''}`}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Check-in:</span>
+                            <span className="font-semibold">{formatDate(quotationData.checkIn)}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Check-out:</span>
+                            <span className="font-semibold">{formatDate(quotationData.checkOut)}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
                       <Button
                         onClick={() => window.open(generateQuotationUrl(), '_blank')}
                         className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                       >
-                        Ver Cotação
+                        Ver Cotação Completa
                       </Button>
                       <Button
                         variant="outline"
@@ -363,6 +460,7 @@ export function ChatWidget() {
                           setQuotationData({
                             checkIn: '',
                             checkOut: '',
+                            roomType: '',
                             rooms: 1,
                             adults: 1,
                             children: 0

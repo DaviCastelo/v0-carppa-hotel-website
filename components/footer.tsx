@@ -51,7 +51,7 @@ export function Footer() {
               <a href="#" className="hover:text-secondary transition-colors" aria-label="Facebook">
                 <Facebook size={24} />
               </a>
-              <a href="#" className="hover:text-secondary transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/carppahotel/" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors" aria-label="Instagram">
                 <Instagram size={24} />
               </a>
               <a href="#" className="hover:text-secondary transition-colors" aria-label="Twitter">
