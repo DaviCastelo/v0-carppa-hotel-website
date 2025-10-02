@@ -99,9 +99,6 @@ export default function QuartosPage() {
                           height={400}
                           className="w-full h-80 lg:h-96 object-cover"
                         />
-                        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-semibold text-black shadow-lg">
-                          {room.price}/noite
-                        </div>
                       </div>
                     </div>
                   </div>

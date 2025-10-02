@@ -7,7 +7,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/luxury-hotel-exterior-with-pool-and-beautiful-land.jpg')`,
+          backgroundImage: `url('/images/IMG_7992.jpg')`,
         }}
       >
         {/* Efeito blur azul apenas no desktop */}
