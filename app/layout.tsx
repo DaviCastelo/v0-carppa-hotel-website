@@ -10,7 +10,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Carppa Hotel - Conforto e Hospitalidade",
   description:
-    "Experimente o melhor da hospitalidade no Carppa Hotel. Quartos confortáveis, localização privilegiada e atendimento excepcional.",
+    "Experimente o melhor da hospitalidade no Carppa Hotel. Quartos confortáveis, localização privilegiada e atendimento excepcional em Fortaleza.",
   generator: "v0.app",
 }
 

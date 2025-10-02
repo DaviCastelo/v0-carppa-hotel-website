@@ -1,0 +1,43 @@
+
+  <div id="otabuilder-widget">Carregando...</div>
+    <script>
+      function loadJS(url, location) {
+        var scriptTag = document.createElement('script')
+        scriptTag.src = url
+        scriptTag.crossOrigin = 'anonymous'
+        scriptTag.defer = true
+        scriptTag.async = true
+        location.appendChild(scriptTag)
+      }
+      function initOtabuilderWidget(storefrontId, elementId, orientation) { 
+        var _k = '_OTABUILDER_EMBEDDED_SEARCH_INIT_'
+        var loaded = false
+        var _i = function (initSearchForm) {
+          if (!loaded) {
+            loaded = true
+            initSearchForm(document.getElementById(elementId), {
+              storefrontId: storefrontId,
+              orientation: orientation,
+            })
+          }
+        }
+        if (window[_k]) {
+          _i(window[_k])
+        } else {
+          const listener = function (e) {
+            _i(e.detail.initSearchForm)
+          }
+          document.addEventListener('otabuilder-search-ready', listener)
+        }
+      }
+
+      initOtabuilderWidget(
+        'DzNFAJY6GSKK-AikkxX6u' /** storefrontId */,
+        'otabuilder-widget' /** widget container */,
+        'HORIZONTAL' /** orientation **/
+      )
+      loadJS(
+        'https://app.otabuilder.com/static/js/widget.js' /** widget Js Url */,
+        document.body /** script tag parent */
+      )
+    </script>

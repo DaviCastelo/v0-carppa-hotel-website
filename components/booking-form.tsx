@@ -1,193 +1,113 @@
 "use client"
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Calendar, Users, Bed, ChevronDown } from "lucide-react"
+import { useEffect, useRef } from "react"
 
 export function BookingForm() {
-  const [bookingData, setBookingData] = useState({
-    checkIn: '',
-    checkOut: '',
-    roomType: 'standard-duplo',
-    rooms: 1,
-    adults: 1,
-    children: 0
-  })
+  const widgetInitialized = useRef(false)
 
-  const generateBookingUrl = () => {
-    // URLs específicas para cada tipo de quarto do Carppa Hotel
-    const roomUrls = {
-      'standard-duplo': 'https://book.omnibees.com/hotel/1393/room/33108?c=1159&q=1393',
-      'standard-triplo': 'https://book.omnibees.com/hotel/1393/room/33109?c=1159&q=1393',
-      'standard-quadruplo': 'https://book.omnibees.com/hotel/1393/room/62316?c=9354&q=1393'
-    }
-    
-    const baseUrl = roomUrls[bookingData.roomType as keyof typeof roomUrls] || roomUrls['standard-duplo']
-    
-    // Converter datas do formato YYYY-MM-DD para DDMMYYYY
-    const formatDateForUrl = (dateStr: string) => {
-      const [year, month, day] = dateStr.split('-')
-      return `${day}${month}${year}`
-    }
-    
-    const params = new URLSearchParams({
-      CheckIn: formatDateForUrl(bookingData.checkIn),
-      CheckOut: formatDateForUrl(bookingData.checkOut),
-      NRooms: bookingData.rooms.toString(),
-      ad: bookingData.adults.toString(),
-      ch: bookingData.children.toString(),
-      lang: 'pt-BR',
-      currencyId: '16',
-      version: '4'
-    })
-    
-    return `${baseUrl}&${params.toString()}`
-  }
+  useEffect(() => {
+    // Evitar inicialização dupla
+    if (widgetInitialized.current) return
 
-  const handleReserve = () => {
-    if (bookingData.checkIn && bookingData.checkOut) {
-      window.open(generateBookingUrl(), '_blank')
+    // Verificar se o script já foi carregado
+    const existingScript = document.querySelector('script[src="https://app.otabuilder.com/static/js/widget.js"]')
+    if (existingScript) return
+
+    // Função para carregar o script do Otabuilder
+    const loadJS = (url: string, location: HTMLElement) => {
+      const scriptTag = document.createElement('script')
+      scriptTag.src = url
+      scriptTag.crossOrigin = 'anonymous'
+      scriptTag.defer = true
+      scriptTag.async = true
+      location.appendChild(scriptTag)
     }
-  }
+
+    // Função para inicializar o widget do Otabuilder
+    const initOtabuilderWidget = (storefrontId: string, elementId: string, orientation: string) => { 
+      const _k = '_OTABUILDER_EMBEDDED_SEARCH_INIT_'
+      let loaded = false
+      const _i = (initSearchForm: any) => {
+        if (!loaded) {
+          loaded = true
+          const element = document.getElementById(elementId)
+          if (element) {
+            // Limpar conteúdo anterior se existir
+            element.innerHTML = ''
+            initSearchForm(element, {
+              storefrontId: storefrontId,
+              orientation: orientation,
+            })
+          }
+        }
+      }
+      if ((window as any)[_k]) {
+        _i((window as any)[_k])
+      } else {
+        const listener = (e: any) => {
+          _i(e.detail.initSearchForm)
+        }
+        document.addEventListener('otabuilder-search-ready', listener)
+      }
+    }
+
+    // Marcar como inicializado
+    widgetInitialized.current = true
+
+    // Inicializar o widget com o storefrontId do Carppa Hotel
+    initOtabuilderWidget(
+      'DzNFAJY6GSKK-AikkxX6u', // storefrontId do Carppa Hotel
+      'otabuilder-widget', // widget container
+      'HORIZONTAL' // orientation
+    )
+    
+    // Carregar o script do widget
+    loadJS(
+      'https://app.otabuilder.com/static/js/widget.js', // widget Js Url
+      document.body // script tag parent
+    )
+  }, [])
 
   return (
-    <Card className="bg-white shadow-lg border-0 p-3 sm:p-6 max-w-6xl mx-auto">
-      {/* Layout responsivo: coluna no mobile, linha no desktop */}
-      <div className="flex flex-col lg:flex-row gap-3 lg:gap-3 items-stretch lg:items-end">
+    <div className="max-w-6xl mx-auto">
+      {/* Container principal com fundo e sombra */}
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-6 lg:p-8">
+        {/* Título do formulário */}
+        <div className="text-center mb-6">
+          <h2 className="text-2xl lg:text-3xl font-bold text-amber-800 mb-2">
+            Reserve sua estadia
+          </h2>
+          <p className="text-gray-600 text-sm lg:text-base">
+            Encontre as melhores ofertas para sua hospedagem no Carppa Hotel
+          </p>
+        </div>
         
-        {/* Primeira linha no mobile: Tipo de Quarto */}
-        <div className="w-full lg:flex-1 lg:min-w-0">
-          <label className="block text-xs font-medium text-gray-700 mb-1">
-            Tipo
-          </label>
-          <div className="relative">
-            <select
-              value={bookingData.roomType}
-              onChange={(e) => setBookingData(prev => ({ ...prev, roomType: e.target.value }))}
-              className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none h-10"
-            >
-              <option value="standard-duplo">Standard Duplo - R$ 240</option>
-              <option value="standard-triplo">Standard Triplo - R$ 300</option>
-              <option value="standard-quadruplo">Standard Quadruplo - R$ 294,40</option>
-            </select>
-            <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary pointer-events-none" size={14} />
+        {/* Widget do Otabuilder */}
+        <div id="otabuilder-widget" className="min-h-[80px] flex items-center justify-center">
+          <div className="flex items-center space-x-2 text-gray-500">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-amber-600"></div>
+            <span>Carregando formulário de reserva...</span>
           </div>
         </div>
-
-        {/* Segunda linha no mobile: Check-in e Check-out lado a lado */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-3 w-full lg:flex-1 lg:min-w-0">
-          {/* Check-in */}
-          <div className="flex-1 min-w-0">
-            <label className="block text-xs font-medium text-gray-700 mb-1">
-              Check-in
-            </label>
-            <div className="relative">
-              <input
-                type="date"
-                value={bookingData.checkIn}
-                onChange={(e) => setBookingData(prev => ({ ...prev, checkIn: e.target.value }))}
-                className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-10"
-              />
-              <Calendar className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary" size={14} />
-            </div>
-          </div>
-
-          {/* Check-out */}
-          <div className="flex-1 min-w-0">
-            <label className="block text-xs font-medium text-gray-700 mb-1">
-              Check-out
-            </label>
-            <div className="relative">
-              <input
-                type="date"
-                value={bookingData.checkOut}
-                onChange={(e) => setBookingData(prev => ({ ...prev, checkOut: e.target.value }))}
-                className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-10"
-              />
-              <Calendar className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary" size={14} />
-            </div>
-          </div>
-        </div>
-
-        {/* Terceira linha no mobile: Quartos, Adultos, Crianças e Botão */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-3 w-full lg:flex-1 lg:min-w-0">
-          {/* Quartos */}
-          <div className="flex-1 min-w-0">
-            <label className="block text-xs font-medium text-gray-700 mb-1">
-              Quartos
-            </label>
-            <div className="relative">
-              <select
-                value={bookingData.rooms}
-                onChange={(e) => setBookingData(prev => ({ ...prev, rooms: parseInt(e.target.value) }))}
-                className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none h-10"
-              >
-                {[1, 2, 3, 4].map(num => (
-                  <option key={num} value={num}>{num}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary pointer-events-none" size={14} />
-            </div>
-          </div>
-
-          {/* Adultos */}
-          <div className="flex-1 min-w-0">
-            <label className="block text-xs font-medium text-gray-700 mb-1">
-              Adultos
-            </label>
-            <div className="relative">
-              <select
-                value={bookingData.adults}
-                onChange={(e) => setBookingData(prev => ({ ...prev, adults: parseInt(e.target.value) }))}
-                className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none h-10"
-              >
-                {[1, 2, 3, 4, 5, 6].map(num => (
-                  <option key={num} value={num}>{num}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary pointer-events-none" size={14} />
-            </div>
-          </div>
-
-          {/* Crianças */}
-          <div className="flex-1 min-w-0">
-            <label className="block text-xs font-medium text-gray-700 mb-1">
-              Crianças
-            </label>
-            <div className="relative">
-              <select
-                value={bookingData.children}
-                onChange={(e) => setBookingData(prev => ({ ...prev, children: parseInt(e.target.value) }))}
-                className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none h-10"
-              >
-                {[0, 1, 2, 3, 4].map(num => (
-                  <option key={num} value={num}>{num}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary pointer-events-none" size={14} />
-            </div>
-          </div>
-
-          {/* Botão Reservar */}
-          <div className="w-full sm:w-auto sm:flex-shrink-0">
-            <Button
-              onClick={handleReserve}
-              disabled={!bookingData.checkIn || !bookingData.checkOut}
-              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-4 lg:px-8 py-2 text-sm font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed h-10"
-            >
-              RESERVAR
-            </Button>
+        
+        {/* Informações promocionais */}
+        <div className="mt-6 text-center">
+          <div className="inline-flex items-center space-x-4 text-sm text-gray-600 bg-amber-50 rounded-full px-4 py-2">
+            <span className="flex items-center">
+              <span className="w-2 h-2 bg-amber-600 rounded-full mr-2"></span>
+              Café da manhã incluso
+            </span>
+            <span className="flex items-center">
+              <span className="w-2 h-2 bg-amber-500 rounded-full mr-2"></span>
+              Wi-Fi gratuito
+            </span>
+            <span className="flex items-center">
+              <span className="w-2 h-2 bg-amber-700 rounded-full mr-2"></span>
+              Estacionamento gratuito
+            </span>
           </div>
         </div>
       </div>
-
-      {/* Informações adicionais */}
-      <div className="mt-3 text-center">
-        <p className="text-xs text-gray-600">
-          Wi-Fi gratuito • Ar condicionado • TV LCD • Cofre individual
-        </p>
-      </div>
-    </Card>
+    </div>
   )
 }

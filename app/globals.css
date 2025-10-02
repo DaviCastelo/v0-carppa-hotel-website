@@ -4,76 +4,76 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Paleta de Cores Praiana para Hotel Carppa */
-  --background: #F5E6CA; /* Areia Suave - fundo neutro aconchegante */
-  --foreground: #000000; /* Preto para boa legibilidade */
+  /* Paleta de Cores Carppa Hotel - Baseada no site da Tinto */
+  --background: #FFFFFF; /* Branco Puro - fundo principal */
+  --foreground: #2C2C2C; /* Cinza Escuro - tipografia principal */
   --card: #FFFFFF; /* Branco Puro - para contrastes e áreas de respiro */
-  --card-foreground: #000000; /* Preto para textos em cards */
+  --card-foreground: #2C2C2C; /* Cinza Escuro - texto em cards */
   --popover: #FFFFFF; /* Branco Puro */
-  --popover-foreground: #000000; /* Preto */
-  --primary: #0077B6; /* Azul Oceano - principal, remete ao mar */
-  --primary-foreground: #FFFFFF; /* Branco Puro - texto em botões principais */
-  --secondary: #90E0EF; /* Azul Claro/Água - secundário, frescor */
-  --secondary-foreground: #0077B6; /* Azul Oceano - texto em elementos secundários */
-  --muted: #90E0EF; /* Azul Claro/Água - elementos suaves */
-  --muted-foreground: #000000; /* Preto */
-  --accent: #00B894; /* Verde Água - destaques, tropical */
-  --accent-foreground: #FFFFFF; /* Branco Puro - texto em destaques */
-  --destructive: #FF6B6B; /* Coral Suave - para erros e alertas */
+  --popover-foreground: #2C2C2C; /* Cinza Escuro */
+  --primary: #8B4513; /* Marrom Sienna - cor principal do hotel */
+  --primary-foreground: #FFFFFF; /* Branco - texto em botões principais */
+  --secondary: #A0522D; /* Sienna Claro - secundária */
+  --secondary-foreground: #FFFFFF; /* Branco - texto em elementos secundários */
+  --muted: #F5F5F5; /* Cinza Muito Claro - elementos suaves */
+  --muted-foreground: #666666; /* Cinza Médio */
+  --accent: #CD853F; /* Peru - destaques */
+  --accent-foreground: #FFFFFF; /* Branco - texto em destaques */
+  --destructive: #DC143C; /* Crimson - para erros e alertas */
   --destructive-foreground: #FFFFFF; /* Branco Puro */
-  --border: #90E0EF; /* Azul Claro/Água - bordas suaves */
+  --border: #E5E5E5; /* Cinza Claro - bordas suaves */
   --input: #FFFFFF; /* Branco Puro - inputs */
-  --ring: #0077B6; /* Azul Oceano - anel de foco */
-  --chart-1: #0077B6; /* Azul Oceano */
-  --chart-2: #90E0EF; /* Azul Claro/Água */
-  --chart-3: #00B894; /* Verde Água */
-  --chart-4: #FF6B6B; /* Coral Suave */
-  --chart-5: #F5E6CA; /* Areia Suave */
+  --ring: #8B4513; /* Marrom Sienna - anel de foco */
+  --chart-1: #8B4513; /* Marrom Sienna */
+  --chart-2: #A0522D; /* Sienna Claro */
+  --chart-3: #CD853F; /* Peru */
+  --chart-4: #FFFFFF; /* Branco */
+  --chart-5: #2C2C2C; /* Cinza Escuro */
   --radius: 0.5rem;
-  --sidebar: #F5E6CA; /* Areia Suave */
-  --sidebar-foreground: #000000; /* Preto */
-  --sidebar-primary: #0077B6; /* Azul Oceano */
-  --sidebar-primary-foreground: #FFFFFF; /* Branco Puro */
-  --sidebar-accent: #00B894; /* Verde Água */
-  --sidebar-accent-foreground: #FFFFFF; /* Branco Puro */
-  --sidebar-border: #90E0EF; /* Azul Claro/Água */
-  --sidebar-ring: #0077B6; /* Azul Oceano */
+  --sidebar: #8B4513; /* Marrom Sienna - header/footer */
+  --sidebar-foreground: #FFFFFF; /* Branco */
+  --sidebar-primary: #CD853F; /* Peru */
+  --sidebar-primary-foreground: #FFFFFF; /* Branco */
+  --sidebar-accent: #A0522D; /* Sienna Claro */
+  --sidebar-accent-foreground: #FFFFFF; /* Branco */
+  --sidebar-border: #A0522D; /* Sienna Claro */
+  --sidebar-ring: #CD853F; /* Peru */
 }
 
 .dark {
-  /* Modo escuro com paleta praiana adaptada */
-  --background: #1a1a2e; /* Azul escuro profundo */
-  --foreground: #F5E6CA; /* Areia Suave - texto claro */
-  --card: #16213e; /* Azul escuro para cards */
-  --card-foreground: #F5E6CA; /* Areia Suave - texto em cards */
-  --popover: #16213e; /* Azul escuro */
-  --popover-foreground: #F5E6CA; /* Areia Suave */
-  --primary: #90E0EF; /* Azul Claro/Água - principal no modo escuro */
-  --primary-foreground: #1a1a2e; /* Azul escuro - texto em botões */
-  --secondary: #0077B6; /* Azul Oceano - secundário no modo escuro */
-  --secondary-foreground: #F5E6CA; /* Areia Suave */
-  --muted: #0f3460; /* Azul escuro suave */
-  --muted-foreground: #90E0EF; /* Azul Claro/Água */
-  --accent: #00B894; /* Verde Água - destaques */
-  --accent-foreground: #1a1a2e; /* Azul escuro - texto em destaques */
-  --destructive: #FF6B6B; /* Coral Suave - para erros */
-  --destructive-foreground: #1a1a2e; /* Azul escuro */
-  --border: #0f3460; /* Azul escuro suave - bordas */
-  --input: #16213e; /* Azul escuro - inputs */
-  --ring: #90E0EF; /* Azul Claro/Água - anel de foco */
-  --chart-1: #90E0EF; /* Azul Claro/Água */
-  --chart-2: #0077B6; /* Azul Oceano */
-  --chart-3: #00B894; /* Verde Água */
-  --chart-4: #FF6B6B; /* Coral Suave */
-  --chart-5: #F5E6CA; /* Areia Suave */
-  --sidebar: #1a1a2e; /* Azul escuro profundo */
-  --sidebar-foreground: #F5E6CA; /* Areia Suave */
-  --sidebar-primary: #90E0EF; /* Azul Claro/Água */
-  --sidebar-primary-foreground: #1a1a2e; /* Azul escuro */
-  --sidebar-accent: #00B894; /* Verde Água */
-  --sidebar-accent-foreground: #1a1a2e; /* Azul escuro */
-  --sidebar-border: #0f3460; /* Azul escuro suave */
-  --sidebar-ring: #90E0EF; /* Azul Claro/Água */
+  /* Modo escuro com paleta Carppa Hotel adaptada */
+  --background: #1A1A1A; /* Preto Suave - fundo escuro elegante */
+  --foreground: #F8F6F0; /* Bege Suave - texto claro */
+  --card: #2D2D2D; /* Cinza Escuro para cards */
+  --card-foreground: #F8F6F0; /* Bege Suave - texto em cards */
+  --popover: #2D2D2D; /* Cinza Escuro */
+  --popover-foreground: #F8F6F0; /* Bege Suave */
+  --primary: #CD853F; /* Peru - principal no modo escuro */
+  --primary-foreground: #1A1A1A; /* Preto Suave - texto em botões */
+  --secondary: #A0522D; /* Sienna Claro - secundário no modo escuro */
+  --secondary-foreground: #F8F6F0; /* Bege Suave */
+  --muted: #404040; /* Cinza Médio */
+  --muted-foreground: #CD853F; /* Peru */
+  --accent: #8B4513; /* Marrom Sienna - destaques */
+  --accent-foreground: #F8F6F0; /* Bege Suave - texto em destaques */
+  --destructive: #DC143C; /* Crimson - para erros */
+  --destructive-foreground: #F8F6F0; /* Bege Suave */
+  --border: #404040; /* Cinza Médio - bordas */
+  --input: #2D2D2D; /* Cinza Escuro - inputs */
+  --ring: #CD853F; /* Peru - anel de foco */
+  --chart-1: #CD853F; /* Peru */
+  --chart-2: #8B4513; /* Marrom Sienna */
+  --chart-3: #A0522D; /* Sienna Claro */
+  --chart-4: #F8F6F0; /* Bege Suave */
+  --chart-5: #1A1A1A; /* Preto Suave */
+  --sidebar: #1A1A1A; /* Preto Suave */
+  --sidebar-foreground: #F8F6F0; /* Bege Suave */
+  --sidebar-primary: #CD853F; /* Peru */
+  --sidebar-primary-foreground: #1A1A1A; /* Preto Suave */
+  --sidebar-accent: #8B4513; /* Marrom Sienna */
+  --sidebar-accent-foreground: #F8F6F0; /* Bege Suave */
+  --sidebar-border: #404040; /* Cinza Médio */
+  --sidebar-ring: #CD853F; /* Peru */
 }
 
 @theme inline {
@@ -127,49 +127,136 @@
 }
 
 @layer utilities {
-  /* Classes utilitárias para a paleta praiana */
-  .bg-ocean-blue {
-    background-color: #0077B6;
+  /* Classes utilitárias para a paleta Carppa Hotel */
+  .bg-sienna {
+    background-color: #8B4513;
   }
-  .text-ocean-blue {
-    color: #0077B6;
+  .text-sienna {
+    color: #8B4513;
   }
-  .bg-water-blue {
-    background-color: #90E0EF;
+  .bg-sienna-light {
+    background-color: #A0522D;
   }
-  .text-water-blue {
-    color: #90E0EF;
+  .text-sienna-light {
+    color: #A0522D;
   }
-  .bg-sand-beige {
-    background-color: #F5E6CA;
+  .bg-soft-beige {
+    background-color: #F8F6F0;
   }
-  .text-sand-beige {
-    color: #F5E6CA;
+  .text-soft-beige {
+    color: #F8F6F0;
   }
-  .bg-water-green {
-    background-color: #00B894;
+  .bg-peru {
+    background-color: #CD853F;
   }
-  .text-water-green {
-    color: #00B894;
+  .text-peru {
+    color: #CD853F;
   }
-  .bg-coral-soft {
-    background-color: #FF6B6B;
+  .bg-tan {
+    background-color: #D2B48C;
   }
-  .text-coral-soft {
-    color: #FF6B6B;
+  .text-tan {
+    color: #D2B48C;
   }
-  .text-black {
-    color: #000000;
+  .bg-dark-gray {
+    background-color: #2C2C2C;
+  }
+  .text-dark-gray {
+    color: #2C2C2C;
+  }
+  .bg-crimson {
+    background-color: #DC143C;
+  }
+  .text-crimson {
+    color: #DC143C;
   }
   
-  /* Gradientes praianos */
-  .bg-ocean-gradient {
-    background: linear-gradient(135deg, #0077B6 0%, #90E0EF 100%);
+  /* Gradientes Carppa Hotel */
+  .bg-terracotta-gradient {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
   }
-  .bg-sunset-gradient {
-    background: linear-gradient(135deg, #FF6B6B 0%, #00B894 100%);
+  .bg-luxury-gradient {
+    background: linear-gradient(135deg, #CD853F 0%, #8B4513 100%);
   }
-  .bg-beach-gradient {
-    background: linear-gradient(135deg, #F5E6CA 0%, #90E0EF 100%);
+  .bg-elegant-gradient {
+    background: linear-gradient(135deg, #F8F6F0 0%, #CD853F 100%);
+  }
+  .bg-sophisticated-gradient {
+    background: linear-gradient(135deg, #2C2C2C 0%, #8B4513 100%);
+  }
+  .bg-warm-gradient {
+    background: linear-gradient(135deg, #D2B48C 0%, #CD853F 100%);
+  }
+  
+  /* Animação para logo aparecer de baixo para cima */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  /* Animações de deslizar para quartos */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+  }
+
+  /* Animação de deslizar de baixo para cima para cards dos quartos */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.8s ease-out;
+  }
+
+  /* Efeito de hover para cards dos quartos */
+  .room-card {
+    transition: all 0.3s ease;
+  }
+
+  .room-card:hover {
+    transform: translateY(-8px);
   }
 }

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { MessageCircle, X, Calendar, MapPin, Building, BookOpen, Send, ChevronLeft, ChevronRight, Maximize2, Minimize2 } from "lucide-react"
 import Link from "next/link"
+import { rooms } from "@/lib/rooms-data"
 
 type QuotationStep = 'initial' | 'dates' | 'roomType' | 'rooms' | 'adults' | 'children' | 'complete' | 'location' | 'support'
 
@@ -42,16 +43,10 @@ export function ChatWidget() {
   ]
 
   const generateQuotationUrl = () => {
-    // URLs específicas para cada tipo de quarto do Carppa Hotel
-    const roomUrls = {
-      'standard-duplo': 'https://book.omnibees.com/hotel/1393/room/33108?c=1159&q=1393',
-      'standard-triplo': 'https://book.omnibees.com/hotel/1393/room/33109?c=1159&q=1393',
-      'standard-quadruplo': 'https://book.omnibees.com/hotel/1393/room/62316?c=9354&q=1393'
-    }
+    // Encontrar o quarto selecionado nos dados
+    const selectedRoom = rooms.find(room => room.id === quotationData.roomType)
     
-    const baseUrl = quotationData.roomType && roomUrls[quotationData.roomType as keyof typeof roomUrls] 
-      ? roomUrls[quotationData.roomType as keyof typeof roomUrls]
-      : "https://book.omnibees.com/hotel/1393?c=1159&q=1393"
+    const baseUrl = selectedRoom?.reservationUrl || "https://book.omnibees.com/hotel/1393?c=1159&q=1393"
     
     // Converter datas do formato YYYY-MM-DD para DDMMYYYY
     const formatDateForUrl = (dateStr: string) => {
@@ -237,53 +232,26 @@ export function ChatWidget() {
                         Qual tipo de quarto você prefere?
                       </p>
                       <div className="space-y-2 mb-3">
-                        <Button
-                          variant={quotationData.roomType === 'standard-duplo' ? "default" : "outline"}
-                          size="sm"
-                          onClick={() => {
-                            setQuotationData(prev => ({ ...prev, roomType: 'standard-duplo' }))
-                            setQuotationStep('rooms')
-                          }}
-                          className="w-full justify-start h-10"
-                        >
-                          <Building size={16} className="mr-2" />
-                          <div className="text-left">
-                            <div className="font-semibold">Standard Duplo</div>
-                            <div className="text-xs text-gray-600">R$ 240/noite • 3 pessoas • 1 cama de casal</div>
-                          </div>
-                        </Button>
-                        
-                        <Button
-                          variant={quotationData.roomType === 'standard-triplo' ? "default" : "outline"}
-                          size="sm"
-                          onClick={() => {
-                            setQuotationData(prev => ({ ...prev, roomType: 'standard-triplo' }))
-                            setQuotationStep('rooms')
-                          }}
-                          className="w-full justify-start h-10"
-                        >
-                          <Building size={16} className="mr-2" />
-                          <div className="text-left">
-                            <div className="font-semibold">Standard Triplo</div>
-                            <div className="text-xs text-gray-600">R$ 300/noite • 3 pessoas • 1 cama de casal + 1 solteiro</div>
-                          </div>
-                        </Button>
-                        
-                        <Button
-                          variant={quotationData.roomType === 'standard-quadruplo' ? "default" : "outline"}
-                          size="sm"
-                          onClick={() => {
-                            setQuotationData(prev => ({ ...prev, roomType: 'standard-quadruplo' }))
-                            setQuotationStep('rooms')
-                          }}
-                          className="w-full justify-start h-10"
-                        >
-                          <Building size={16} className="mr-2" />
-                          <div className="text-left">
-                            <div className="font-semibold">Standard Quadruplo</div>
-                            <div className="text-xs text-gray-600">R$ 294,40/noite • 4 pessoas • 2 camas de casal</div>
-                          </div>
-                        </Button>
+                        {rooms.map((room) => (
+                          <Button
+                            key={room.id}
+                            variant={quotationData.roomType === room.id ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => {
+                              setQuotationData(prev => ({ ...prev, roomType: room.id }))
+                              setQuotationStep('rooms')
+                            }}
+                            className="w-full justify-start h-10"
+                          >
+                            <Building size={16} className="mr-2" />
+                            <div className="text-left">
+                              <div className="font-semibold">{room.name}</div>
+                              <div className="text-xs text-gray-600">
+                                R$ {room.price}/noite • {room.capacity} • {room.beds}
+                              </div>
+                            </div>
+                          </Button>
+                        ))}
                       </div>
                     </>
                   )}
@@ -423,9 +391,7 @@ export function ChatWidget() {
                           <div className="flex justify-between">
                             <span className="text-gray-600">Tipo de Quarto:</span>
                             <span className="font-semibold">
-                              {quotationData.roomType === 'standard-duplo' && 'Standard Duplo'}
-                              {quotationData.roomType === 'standard-triplo' && 'Standard Triplo'}
-                              {quotationData.roomType === 'standard-quadruplo' && 'Standard Quadruplo'}
+                              {rooms.find(room => room.id === quotationData.roomType)?.name || 'Quarto selecionado'}
                             </span>
                           </div>
                           <div className="flex justify-between">
