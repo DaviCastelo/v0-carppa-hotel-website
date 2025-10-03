@@ -22,16 +22,16 @@ export default function QuartosPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/images/IMG_5231.jpg')`,
+            backgroundImage: `url('/IMG_5211.jpg')`,
           }}
         >
-          {/* Overlay apenas no desktop - efeito branco bem intenso sem desfoque */}
-          <div className="absolute inset-0 bg-white/60 hidden md:block" />
+          {/* Efeito azul similar à hero section */}
+          <div className="absolute inset-0 bg-blue-500/30" />
         </div>
 
         {/* Title centralizado */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold uppercase tracking-wider text-center" style={{ color: '#7d3330' }}>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold uppercase tracking-wider text-center text-white drop-shadow-lg">
             Nossas Acomodações
           </h1>
         </div>

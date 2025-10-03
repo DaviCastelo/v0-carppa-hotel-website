@@ -1,167 +1,153 @@
-"use client"
+'use client'
 
+import { useForm } from "react-hook-form"
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 
 interface FormData {
-  name: string
-  email: string
-  phone: string
-  message: string
-  acceptNewsletter: boolean
+  nome: string;
+  email: string;
+  telefone: string;
+  mensagem: string;
+  aceitoNewsletter: boolean;
 }
 
 export function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    acceptNewsletter: false
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<FormData>();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-    }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
+  const onSubmit = async (data: FormData) => {
+    setIsLoading(true);
+    setSubmitStatus('idle');
 
     try {
-      // Validar campos obrigatórios
-      if (!formData.name || !formData.email || !formData.message) {
-        throw new Error('Por favor, preencha todos os campos obrigatórios.')
-      }
-
-      // Validar email
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      if (!emailRegex.test(formData.email)) {
-        throw new Error('Por favor, insira um email válido.')
-      }
-
-      // Enviar email usando EmailJS ou uma API
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          to: 'contato@carppahotel.com',
-          subject: `Nova mensagem de contato - ${formData.name}`,
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          acceptNewsletter: formData.acceptNewsletter
-        })
-      })
+        body: JSON.stringify(data),
+      });
 
-      if (!response.ok) {
-        throw new Error('Erro ao enviar mensagem. Tente novamente.')
+      if (response.ok) {
+        setSubmitStatus('success');
+        reset();
+      } else {
+        setSubmitStatus('error');
       }
-
-      setSubmitStatus('success')
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-        acceptNewsletter: false
-      })
     } catch (error) {
-      console.error('Erro ao enviar formulário:', error)
-      setSubmitStatus('error')
+      console.error('Erro ao enviar formulário:', error);
+      setSubmitStatus('error');
     } finally {
-      setIsSubmitting(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
         <input
+          {...register('nome', { required: 'Nome é obrigatório' })}
           type="text"
-          name="name"
           placeholder="Seu nome"
-          value={formData.name}
-          onChange={handleInputChange}
-          required
-          className="w-full px-4 py-3 border border-sienna rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500"
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500 ${
+            errors.nome ? 'border-red-500' : 'border-sienna'
+          }`}
         />
+        {errors.nome && (
+          <p className="text-red-500 text-sm mt-1">{errors.nome.message}</p>
+        )}
       </div>
+      
       <div>
         <input
+          {...register('email', { 
+            required: 'Email é obrigatório',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Email inválido'
+            }
+          })}
           type="email"
-          name="email"
           placeholder="Seu email"
-          value={formData.email}
-          onChange={handleInputChange}
-          required
-          className="w-full px-4 py-3 border border-sienna rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500"
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500 ${
+            errors.email ? 'border-red-500' : 'border-sienna'
+          }`}
         />
+        {errors.email && (
+          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+        )}
       </div>
+      
       <div>
         <input
+          {...register('telefone', { required: 'Telefone é obrigatório' })}
           type="tel"
-          name="phone"
           placeholder="Seu telefone"
-          value={formData.phone}
-          onChange={handleInputChange}
-          className="w-full px-4 py-3 border border-sienna rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500"
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500 ${
+            errors.telefone ? 'border-red-500' : 'border-sienna'
+          }`}
         />
+        {errors.telefone && (
+          <p className="text-red-500 text-sm mt-1">{errors.telefone.message}</p>
+        )}
       </div>
+      
       <div>
         <textarea
-          name="message"
+          {...register('mensagem', { required: 'Mensagem é obrigatória' })}
           placeholder="Mensagem"
           rows={4}
-          value={formData.message}
-          onChange={handleInputChange}
-          required
-          className="w-full px-4 py-3 border border-sienna rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500 resize-none"
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500 resize-none ${
+            errors.mensagem ? 'border-red-500' : 'border-sienna'
+          }`}
         />
+        {errors.mensagem && (
+          <p className="text-red-500 text-sm mt-1">{errors.mensagem.message}</p>
+        )}
       </div>
+      
       <div className="flex items-center space-x-2">
         <input
+          {...register('aceitoNewsletter')}
           type="checkbox"
           id="newsletter"
-          name="acceptNewsletter"
-          checked={formData.acceptNewsletter}
-          onChange={handleInputChange}
           className="w-4 h-4 text-sienna border-sienna rounded focus:ring-sienna/20"
         />
         <label htmlFor="newsletter" className="text-sm text-gray-600">
           Aceito receber materiais informativos
         </label>
       </div>
-      
+
       {/* Status Messages */}
       {submitStatus === 'success' && (
-        <div className="p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
+        <div className="p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg">
           Mensagem enviada com sucesso! Entraremos em contato em breve.
         </div>
       )}
       
       {submitStatus === 'error' && (
-        <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
-          Erro ao enviar mensagem. Tente novamente ou entre em contato por telefone.
+        <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+          Erro ao enviar mensagem. Tente novamente mais tarde.
         </div>
       )}
       
       <button
         type="submit"
-        disabled={isSubmitting}
-        className="w-full bg-sienna text-white py-3 px-6 rounded-lg font-medium hover:bg-sienna/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={isLoading}
+        className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+          isLoading
+            ? 'bg-gray-400 cursor-not-allowed'
+            : 'bg-sienna hover:bg-sienna/90'
+        } text-white`}
       >
-        {isSubmitting ? 'Enviando...' : 'ENVIAR'}
+        {isLoading ? 'ENVIANDO...' : 'ENVIAR'}
       </button>
     </form>
   )

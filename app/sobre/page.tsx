@@ -19,13 +19,13 @@ export default function SobrePage() {
             backgroundImage: `url('/images/Quartos/Humanizadas/IMG_7992 (1).jpg')`,
           }}
         >
-          {/* Overlay apenas no desktop - efeito branco bem intenso sem desfoque */}
-          <div className="absolute inset-0 bg-white/60 hidden md:block" />
+          {/* Efeito azul similar à hero section */}
+          <div className="absolute inset-0 bg-blue-500/30" />
         </div>
 
         {/* Title centralizado */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold uppercase tracking-wider" style={{ color: '#7d3330' }}>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold uppercase tracking-wider text-white drop-shadow-lg">
             O Hotel
           </h1>
         </div>
