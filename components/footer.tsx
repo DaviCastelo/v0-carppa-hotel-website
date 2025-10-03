@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Instagram, Mail, Phone } from "lucide-react"
+import { ContactForm } from "@/components/contact-form"
 
 export function Footer() {
   return (
@@ -81,52 +82,7 @@ export function Footer() {
           <div className="p-8">
             <div className="space-y-6">
               {/* Contact Form */}
-              <form className="space-y-4">
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Seu nome"
-                    className="w-full px-4 py-3 border border-sienna rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Seu email"
-                    className="w-full px-4 py-3 border border-sienna rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    placeholder="Seu telefone"
-                    className="w-full px-4 py-3 border border-sienna rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500"
-                  />
-                </div>
-                <div>
-                  <textarea
-                    placeholder="Mensagem"
-                    rows={4}
-                    className="w-full px-4 py-3 border border-sienna rounded-lg focus:outline-none focus:ring-2 focus:ring-sienna/20 bg-white text-gray-700 placeholder-gray-500 resize-none"
-                  />
-                </div>
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="newsletter"
-                    className="w-4 h-4 text-sienna border-sienna rounded focus:ring-sienna/20"
-                  />
-                  <label htmlFor="newsletter" className="text-sm text-gray-600">
-                    Aceito receber materiais informativos
-                  </label>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-sienna text-white py-3 px-6 rounded-lg font-medium hover:bg-sienna/90 transition-colors"
-                >
-                  ENVIAR
-                </button>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>

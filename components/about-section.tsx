@@ -8,7 +8,7 @@ export function AboutSection() {
           {/* Image */}
           <div className="order-2 lg:order-1">
             <Image
-              src="/elegant-hotel-lobby-with-comfortable-seating.jpg"
+              src="/images/Quartos/Humanizadas/IMG_8515.jpg"
               alt="Interior do Carppa Hotel"
               width={800}
               height={600}
