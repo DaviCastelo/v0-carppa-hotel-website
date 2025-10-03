@@ -7,11 +7,11 @@ export function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/IMG_7992.jpg')`,
+          backgroundImage: `url('/images/IMG_4989 (2).JPG')`,
         }}
       >
-        {/* Efeito blur azul apenas no desktop */}
-        <div className="absolute inset-0 bg-blue-500/30 backdrop-blur-md hidden md:block" />
+        {/* Efeito azul apenas no desktop */}
+        <div className="absolute inset-0 bg-blue-500/30 hidden md:block" />
       </div>
 
       {/* Logo no centro da foto - apenas no desktop */}

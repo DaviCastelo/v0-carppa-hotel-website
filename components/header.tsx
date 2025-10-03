@@ -31,7 +31,7 @@ export function Header() {
             {showLogo ? (
               <Link href="/" className="animate-slide-up">
                 <Image 
-                  src="/images/carppa-logo.png" 
+                  src="/images/carppa-logo.webp" 
                   alt="Carppa Hotel" 
                   width={160} 
                   height={60} 
@@ -46,7 +46,7 @@ export function Header() {
           {/* Mobile Logo - Center */}
           <div className="md:hidden flex justify-center">
             <Image 
-              src="/images/carppa-logo.png" 
+              src="/images/carppa-logo.webp" 
               alt="Carppa Hotel" 
               width={160} 
               height={60} 

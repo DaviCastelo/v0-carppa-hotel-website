@@ -1,9 +1,11 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { Users, Bed, Bath, Sofa } from "lucide-react"
+import { Bed, Users, Star, Info } from "lucide-react"
 import { rooms } from "@/lib/rooms-data"
 
 export default function QuartosPage() {
@@ -15,91 +17,82 @@ export default function QuartosPage() {
       <div className="pt-20"></div>
 
       {/* Hero Section */}
-      <section className="bg-sienna text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Nossos Quartos</h1>
-          <p className="text-xl md:text-2xl text-balance max-w-3xl mx-auto">
-            Escolha entre nossas acomodações cuidadosamente projetadas para proporcionar máximo conforto e hospitalidade
-          </p>
+      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/images/IMG_5231.jpg')`,
+          }}
+        >
+          {/* Overlay apenas no desktop - efeito branco bem intenso sem desfoque */}
+          <div className="absolute inset-0 bg-white/60 hidden md:block" />
+        </div>
+
+        {/* Title centralizado */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold uppercase tracking-wider text-center" style={{ color: '#7d3330' }}>
+            Nossas Acomodações
+          </h1>
         </div>
       </section>
 
-      {/* Rooms Grid */}
+      {/* Rooms List */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="space-y-20">
+
+          <div className="space-y-16">
             {rooms.map((room, index) => {
               const isEven = index % 2 === 0;
-              
               return (
-                <div
-                  key={room.id}
-                  className="room-card opacity-0 translate-y-8"
-                  style={{
-                    animationDelay: `${index * 300}ms`,
-                    animation: 'slideInUp 0.8s ease-out forwards'
-                  }}
+                <div 
+                  key={room.id} 
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center animate-slide-in-${isEven ? 'left' : 'right'}`}
                 >
-                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
-                    isEven ? '' : 'lg:grid-flow-col-dense'
-                  }`}>
-                    {/* Conteúdo de Texto */}
-                    <div className={`space-y-6 ${isEven ? 'lg:pr-8' : 'lg:pl-8 lg:col-start-2'}`}>
-                      <div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-black mb-4">
-                          {room.name.toUpperCase()}
-                        </h3>
-                        
-                        <div className="flex items-center space-x-2 text-black mb-4">
-                          <Users size={20} className="text-sienna" />
-                          <span className="text-lg">Até {room.capacity}</span>
-                        </div>
-                        
-                        <p className="text-gray-700 text-base leading-relaxed mb-6">
-                          Uma proposta de encantar e ser refúgio para quem busca comodidade, bem-estar e sofisticação em um ambiente aconchegante. Além de poder conhecer a terra do sol: Fortaleza.
-                        </p>
-                      </div>
+                  {/* Room Image */}
+                  <div className={`relative ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+                    <Image
+                      src={room.image || "/placeholder.svg"}
+                      alt={room.name}
+                      width={600}
+                      height={400}
+                      className="w-full h-96 object-cover"
+                    />
+                  </div>
 
-                      <div className="space-y-3">
-                        <div className="flex items-center space-x-3 text-black">
-                          <Bed size={20} className="text-sienna" />
-                          <span className="text-base">{room.beds}</span>
-                        </div>
-                        <div className="flex items-center space-x-3 text-black">
-                          <Bath size={20} className="text-sienna" />
-                          <span className="text-base">
-                            {room.bathrooms} banheiro{room.bathrooms > 1 ? "s" : ""}
-                          </span>
-                        </div>
-                        {room.hasSuite && (
-                          <div className="flex items-center space-x-3 text-black">
-                            <Sofa size={20} className="text-sienna" />
-                            <span className="text-base">Sala de estar</span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex gap-4 pt-4">
-                        <Button asChild className="bg-sienna hover:bg-sienna/90 text-white px-8 py-3">
-                          <Link href={`/quartos/${room.id}`}>Saiba Mais</Link>
-                        </Button>
-                        <Button asChild variant="outline" className="border-sienna text-sienna hover:bg-sienna hover:text-white px-8 py-3">
-                          <Link href={room.reservationUrl} target="_blank" rel="noopener noreferrer">Reservar</Link>
-                        </Button>
+                  {/* Room Information */}
+                  <div className={`space-y-6 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                    <div>
+                      <h3 className="text-4xl font-bold text-dark-gray mb-2">{room.name.toUpperCase()}</h3>
+                      <div className="flex items-center space-x-2 text-dark-gray mb-4">
+                        <Users size={20} className="text-sienna" />
+                        <span className="text-lg">Até {room.capacity} pessoas</span>
                       </div>
                     </div>
 
-                    {/* Imagem */}
-                    <div className={`relative ${isEven ? '' : 'lg:col-start-1'}`}>
-                      <div className="relative overflow-hidden rounded-lg shadow-lg">
-                        <Image
-                          src={room.image || "/placeholder.svg"}
-                          alt={room.name}
-                          width={600}
-                          height={400}
-                          className="w-full h-80 lg:h-96 object-cover"
-                        />
+                    <div className="space-y-4">
+                      <p className="text-dark-gray text-lg leading-relaxed">
+                        {room.description || "Uma proposta de encantar e ser refúgio para quem busca comodidade, bem-estar e sofisticação em um ambiente aconchegante. Além de poder conhecer a terra do sol: Fortaleza."}
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3 text-dark-gray">
+                        <Bed size={20} className="text-sienna" />
+                        <span>{room.beds}</span>
                       </div>
+                      {room.bedOptions && (
+                        <div className="flex items-center space-x-3 text-dark-gray">
+                          <Info size={20} className="text-sienna" />
+                          <span className="text-sm">{room.bedOptions}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex gap-4">
+                      <Button asChild className="bg-transparent hover:bg-amber-50 text-amber-800 border border-amber-800 rounded-none px-8 py-3 font-medium uppercase text-base tracking-wide">
+                        <Link href={room.reservationUrl} target="_blank" rel="noopener noreferrer">Reservar</Link>
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -110,17 +103,17 @@ export default function QuartosPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-muted py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-sienna">Precisa de Ajuda para Escolher?</h2>
+          <h2 className="text-3xl font-bold mb-4 text-primary">Precisa de Ajuda para Escolher?</h2>
           <p className="text-lg text-black mb-8 max-w-2xl mx-auto">
             Nossa equipe está pronta para ajudá-lo a encontrar a acomodação perfeita para sua estadia
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="rounded-full bg-sienna hover:bg-sienna/90 text-white">
+            <Button asChild size="lg" className="rounded-full">
               <Link href="/contato">Falar com Especialista</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full border-sienna text-sienna hover:bg-sienna hover:text-white">
+            <Button asChild variant="outline" size="lg" className="rounded-full bg-transparent">
               <Link href="tel:+558534532000">Ligar Agora</Link>
             </Button>
           </div>

@@ -1,20 +1,105 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { AboutHeroSection } from "@/components/about-hero-section"
-import { LocationHighlightSection } from "@/components/location-highlight-section"
-import { PoolAreaSection } from "@/components/pool-area-section"
-import { ExperiencesSection } from "@/components/experiences-section"
-import { HowToGetSection } from "@/components/how-to-get-section"
+import Image from "next/image"
 
-export default function AboutPage() {
+export default function SobrePage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-background">
       <Header />
-      <AboutHeroSection />
-      <LocationHighlightSection />
-      <PoolAreaSection />
-      <ExperiencesSection />
-      <HowToGetSection />
+
+      {/* Header Spacing */}
+      <div className="pt-20"></div>
+      
+      {/* Hero Section */}
+      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/images/Quartos/Humanizadas/IMG_7992 (1).jpg')`,
+          }}
+        >
+          {/* Overlay apenas no desktop - efeito branco bem intenso sem desfoque */}
+          <div className="absolute inset-0 bg-white/60 hidden md:block" />
+        </div>
+
+        {/* Title centralizado */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold uppercase tracking-wider" style={{ color: '#7d3330' }}>
+            O Hotel
+          </h1>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="relative w-full h-[60vh] md:h-[80vh] rounded-lg overflow-hidden">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/-mkX4TsG8KE?autoplay=1&loop=1&playlist=-mkX4TsG8KE&mute=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&cc_load_policy=0&fs=1&disablekb=1"
+              title="Vídeo do Carppa Hotel"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Experiences Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-sienna text-center mb-16">
+            Experiências
+          </h2>
+          
+          <div className="space-y-20">
+            {/* Praia Experience */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-4 order-2 lg:order-1">
+                <h3 className="text-2xl md:text-3xl font-bold text-sienna">
+                  Praia de Iracema
+                </h3>
+                <p className="text-dark-gray leading-relaxed">
+                  Desfrute de uma das praias mais famosas de Fortaleza, localizada a poucos minutos do nosso hotel. A Praia de Iracema oferece um cenário único com seu famoso pôr do sol, bares e restaurantes à beira-mar, e uma atmosfera vibrante que combina tradição e modernidade. Ideal para caminhadas, fotos inesquecíveis e momentos de relaxamento.
+                </p>
+              </div>
+              <div className="relative h-80 lg:h-96 order-1 lg:order-2">
+                <Image
+                  src="https://carppahotel.com.br/wp-content/themes/stamina/assets/img/exp1.jpg"
+                  alt="Praia de Iracema"
+                  fill
+                  className="object-cover rounded-lg"
+                />
+              </div>
+            </div>
+
+            {/* Sabores Experience */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="relative h-80 lg:h-96">
+                <Image
+                  src="https://carppahotel.com.br/wp-content/themes/stamina/assets/img/exp2.jpg"
+                  alt="Sabores do Nordeste"
+                  fill
+                  className="object-cover rounded-lg"
+                />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl md:text-3xl font-bold text-sienna">
+                  Sabores do Nordeste
+                </h3>
+                <p className="text-dark-gray leading-relaxed">
+                  A gastronomia nordestina possui sabores marcantes que encantam o Brasil inteiro e estes sabores estão presentes no nosso variado café da manhã, servido diariamente no Restaurante do Hotel. São temperos únicos, misturas inesperadas, pratos diversificados e novas interpretações da culinária que farão você se apaixonar.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   )

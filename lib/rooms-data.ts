@@ -1,12 +1,12 @@
 export const rooms = [
   {
     id: "standard-duplo-casal",
-    name: "Standard Duplo Casal",
+    name: "Standard Duplo",
     description: "Nossos apartamentos são totalmente preparados para descanso e comodidade, todos equipados com ar condicionado individual, telefone com linha direta, cofre, frigobar, internet wi-fi e TV LCD com canais por assinatura.",
     price: "R$ 249,20",
     originalPrice: "R$ 356,00",
     image: "/images/Quartos/Standard Duplo Casal/IMG_0766.jpg",
-    capacity: "3 pessoas",
+    capacity: "2 pessoas",
     size: "25m²",
     beds: "1 cama de casal",
     bathrooms: 1,
@@ -28,7 +28,7 @@ export const rooms = [
   },
   {
     id: "standard-triplo-casal", 
-    name: "Standard Triplo Casal",
+    name: "Standard Triplo",
     description: "Nossos apartamentos são totalmente preparados para descanso e comodidade, todos equipados com ar condicionado individual, telefone com linha direta, cofre, frigobar, internet wi-fi e TV LCD com canais por assinatura.",
     price: "R$ 311,50",
     originalPrice: "R$ 445,00",
@@ -55,7 +55,7 @@ export const rooms = [
   },
   {
     id: "standard-quadruplo",
-    name: "Standard Quadruplo", 
+    name: "Standard Quádruplo", 
     description: "Nossos apartamentos são totalmente preparados para descanso e comodidade, todos equipados com ar condicionado individual, telefone com linha direta, cofre, frigobar, internet wi-fi e TV LCD com canais por assinatura.",
     price: "R$ 294,40",
     image: "/images/Quartos/Standard Quadruplo/IMG_0790.jpg",
@@ -84,8 +84,8 @@ export const rooms = [
 
 export const roomDetails = {
   "standard-duplo-casal": {
-    name: "Standard Duplo Casal",
-    capacity: 3,
+    name: "Standard Duplo",
+    capacity: 2,
     beds: "1 cama de casal",
     bathrooms: 1,
     hasSuite: false,
@@ -113,7 +113,7 @@ export const roomDetails = {
     reservationUrl: "https://book.omnibees.com/hotel/1393/room/33108?c=1159&q=1393",
   },
   "standard-triplo-casal": {
-    name: "Standard Triplo Casal",
+    name: "Standard Triplo",
     capacity: 3,
     beds: "1 cama de casal + 1 solteiro",
     bathrooms: 1,
@@ -142,7 +142,7 @@ export const roomDetails = {
     reservationUrl: "https://book.omnibees.com/hotel/1393/room/33109?c=1159&q=1393",
   },
   "standard-quadruplo": {
-    name: "Standard Quadruplo",
+    name: "Standard Quádruplo",
     capacity: 4,
     beds: "2 camas de casal",
     bathrooms: 1,
