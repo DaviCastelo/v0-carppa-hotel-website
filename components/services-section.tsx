@@ -64,42 +64,42 @@ export function ServicesSection() {
                     fill
                     className="object-cover brightness-125 contrast-90 group-hover:brightness-100 group-hover:contrast-100 group-hover:scale-110 transition-all duration-700 ease-out"
                   />
-                  {/* Efeito azul similar à hero section */}
-                  <div className="absolute inset-0 bg-blue-500/20 group-hover:bg-blue-500/50 transition-all duration-700 ease-out"></div>
-                  {/* White blur overlay for subtle effect */}
-                  <div className="absolute inset-0 bg-white/50 group-hover:bg-white/5 transition-all duration-700 ease-out"></div>
+                   {/* Efeito azul similar à hero section */}
+                   <div className="absolute inset-0 bg-blue-500/50 group-hover:bg-blue-500/70 transition-all duration-700 ease-out"></div>
+                   {/* White blur overlay for subtle effect */}
+                   <div className="absolute inset-0 bg-white/40 group-hover:bg-white/5 transition-all duration-700 ease-out"></div>
                 </div>
 
                  {/* Content */}
                  <div className="relative z-10 p-6 text-center h-full flex flex-col justify-center">
-                  {/* Icon - Orange-ish color that becomes white on hover */}
-                  <div className="inline-flex items-center justify-center w-20 h-20 md:w-20 md:h-20 mb-6 md:mb-6 group-hover:scale-110 transition-all duration-500 ease-out mx-auto">
-                    <IconComponent 
-                      size={56} 
-                      className="text-orange-400 group-hover:text-white drop-shadow-lg transition-all duration-500 ease-out md:hidden" 
-                      strokeWidth={1.5} 
-                    />
-                    <IconComponent 
-                      size={48} 
-                      className="text-orange-400 group-hover:text-white drop-shadow-lg transition-all duration-500 ease-out hidden md:block" 
-                      strokeWidth={1.5} 
-                    />
-                  </div>
+                   {/* Icon - White color by default */}
+                   <div className="inline-flex items-center justify-center w-20 h-20 md:w-20 md:h-20 mb-6 md:mb-6 group-hover:scale-110 transition-all duration-500 ease-out mx-auto">
+                     <IconComponent 
+                       size={56} 
+                       className="text-white drop-shadow-lg transition-all duration-500 ease-out md:hidden" 
+                       strokeWidth={1.5} 
+                     />
+                     <IconComponent 
+                       size={48} 
+                       className="text-white drop-shadow-lg transition-all duration-500 ease-out hidden md:block" 
+                       strokeWidth={1.5} 
+                     />
+                   </div>
 
-                  {/* Title and Subtitle - Orange text like icons */}
-                  <div className="mb-4">
-                    <h3 className="text-2xl md:text-2xl font-bold text-orange-400 group-hover:text-white mb-1 drop-shadow-lg transition-all duration-500 ease-out">
-                      {service.title}
-                    </h3>
-                    <h4 className="text-xl md:text-xl font-semibold text-orange-400 group-hover:text-white drop-shadow-lg transition-all duration-500 ease-out">
-                      {service.subtitle}
-                    </h4>
-                    {service.description && (
-                      <p className="text-lg md:text-lg font-semibold text-orange-400 group-hover:text-white drop-shadow-lg mt-1 transition-all duration-500 ease-out">
-                        {service.description}
-                      </p>
-                    )}
-                  </div>
+                   {/* Title and Subtitle - White text by default */}
+                   <div className="mb-4">
+                     <h3 className="text-2xl md:text-2xl font-bold text-white mb-1 drop-shadow-lg transition-all duration-500 ease-out">
+                       {service.title}
+                     </h3>
+                     <h4 className="text-xl md:text-xl font-semibold text-white drop-shadow-lg transition-all duration-500 ease-out">
+                       {service.subtitle}
+                     </h4>
+                     {service.description && (
+                       <p className="text-lg md:text-lg font-semibold text-white drop-shadow-lg mt-1 transition-all duration-500 ease-out">
+                         {service.description}
+                       </p>
+                     )}
+                   </div>
                 </div>
 
                 {/* Hover Effect Overlay */}
