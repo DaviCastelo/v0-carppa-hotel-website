@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     // Envio do email usando Resend
     await resend.emails.send({
       from: 'Carppa Hotel <noreply@carppahotel.com>',
-      to: ['contato@carppahotel.com'],
+      to: ['comercial@carppahotel.com.br'],
       subject: `Nova mensagem de contato - ${nome}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px;">
