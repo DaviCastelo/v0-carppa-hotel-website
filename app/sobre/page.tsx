@@ -16,7 +16,7 @@ export default function SobrePage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/images/Quartos/Humanizadas/IMG_7992 (1).jpg')`,
+            backgroundImage: `url('/IMG_4990.jpg')`,
           }}
         >
           {/* Efeito azul similar à hero section */}
