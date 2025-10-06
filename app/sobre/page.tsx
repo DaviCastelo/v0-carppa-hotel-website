@@ -38,7 +38,7 @@ export default function SobrePage() {
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/-mkX4TsG8KE?autoplay=1&loop=1&playlist=-mkX4TsG8KE&mute=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&cc_load_policy=0&fs=1&disablekb=1"
+              src="https://www.youtube.com/embed/ytcLQXljmNw?autoplay=1&loop=1&playlist=ytcLQXljmNw&mute=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&cc_load_policy=0&fs=1&disablekb=1"
               title="Vídeo do Carppa Hotel"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
