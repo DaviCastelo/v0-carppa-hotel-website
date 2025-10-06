@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY || 're_TkYNGbax_86kuKzpWxkvcWrWeCCEEUhxZ');
 
     // Envio do email usando Resend
-    await resend.emails.send({
-      from: 'Carppa Hotel <noreply@carppahotel.com>',
+    const { data, error } = await resend.emails.send({
+      from: 'Carppa Hotel <onboarding@resend.dev>',
       to: ['comercial@carppahotel.com.br'],
       subject: `Nova mensagem de contato - ${nome}`,
       html: `
@@ -79,8 +79,17 @@ ${mensagem}
       `,
     });
 
+    if (error) {
+      console.error('Erro do Resend:', error);
+      return NextResponse.json(
+        { error: 'Erro ao enviar email: ' + error.message },
+        { status: 500 }
+      );
+    }
+
+    console.log('Email enviado com sucesso:', data);
     return NextResponse.json(
-      { message: 'Email enviado com sucesso!' },
+      { message: 'Email enviado com sucesso!', data },
       { status: 200 }
     );
 
