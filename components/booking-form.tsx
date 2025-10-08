@@ -74,7 +74,7 @@ export function BookingForm() {
       <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-6 lg:p-8">
         {/* Título do formulário */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-amber-800 mb-2">
+          <h2 className="title-carppa title-carppa-h2 mb-2">
             Reserve sua estadia
           </h2>
           <p className="text-gray-600 text-sm lg:text-base">

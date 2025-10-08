@@ -8,7 +8,7 @@ export function LocationHighlightSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Conteúdo */}
             <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl font-light text-amber-900 leading-tight">
+              <h2 className="title-carppa text-4xl md:text-5xl">
                 NA MELHOR LOCALIZAÇÃO DA<br />
                 <span className="text-amber-600">PRAIA DE IRACEMA</span>
               </h2>

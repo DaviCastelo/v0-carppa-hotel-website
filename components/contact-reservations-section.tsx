@@ -12,7 +12,7 @@ export function ContactReservationsSection() {
     <section className="py-20 bg-amber-900 text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-light mb-8">
+          <h2 className="title-carppa title-carppa-h2 mb-8">
             CONTATOS E RESERVAS
           </h2>
 

@@ -35,7 +35,7 @@ export const rooms = [
     image: "/images/Quartos/Standard Triplo Casal/IMG_0806.jpg",
     capacity: "3 pessoas",
     size: "30m²", 
-    beds: "1 cama de casal + 1 solteiro",
+    beds: "2 opções: 3 camas de solteiro ou 1 cama de casal + 1 solteiro",
     bathrooms: 1,
     hasSuite: false,
     amenities: [
@@ -115,7 +115,7 @@ export const roomDetails = {
   "standard-triplo-casal": {
     name: "Standard Triplo",
     capacity: 3,
-    beds: "1 cama de casal + 1 solteiro",
+    beds: "2 opções: 3 camas de solteiro ou 1 cama de casal + 1 solteiro",
     bathrooms: 1,
     hasSuite: false,
     price: "311,50",

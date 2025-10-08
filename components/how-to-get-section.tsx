@@ -7,7 +7,7 @@ export function HowToGetSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-amber-900 mb-8">
+            <h2 className="title-carppa title-carppa-h2 mb-8">
               Como chegar
             </h2>
           </div>
@@ -16,7 +16,7 @@ export function HowToGetSection() {
             {/* Conteúdo */}
             <div className="space-y-8">
               <div className="space-y-6">
-                <h3 className="text-3xl font-light text-amber-900">
+                <h3 className="title-carppa title-carppa-h3">
                   Carppa
                 </h3>
                 

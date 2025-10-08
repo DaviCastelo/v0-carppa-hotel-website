@@ -6,7 +6,7 @@ export function ExperiencesSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-amber-900 mb-8">
+            <h2 className="title-carppa title-carppa-h2 mb-8">
               Experiências
             </h2>
           </div>
@@ -28,7 +28,7 @@ export function ExperiencesSection() {
               </div>
               
               <div className="mt-6">
-                <h4 className="text-2xl font-light text-amber-900 mb-4">
+                <h4 className="title-carppa title-carppa-h4 mb-4">
                   Viva a Praia de Iracema
                 </h4>
                 <p className="text-gray-700 leading-relaxed">
@@ -53,7 +53,7 @@ export function ExperiencesSection() {
               </div>
               
               <div className="mt-6">
-                <h4 className="text-2xl font-light text-amber-900 mb-4">
+                <h4 className="title-carppa title-carppa-h4 mb-4">
                   Sabores do Nordeste
                 </h4>
                 <p className="text-gray-700 leading-relaxed">

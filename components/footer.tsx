@@ -52,7 +52,7 @@ export function Footer() {
           {/* Middle Column - Contact Information */}
           <div className="p-8">
             <div className="space-y-6">
-              <h3 className="text-xl font-bold text-sienna uppercase">
+              <h3 className="title-carppa title-carppa-h3 uppercase">
                 Contatos e Reservas
               </h3>
               

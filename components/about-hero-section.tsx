@@ -17,7 +17,7 @@ export function AboutHeroSection() {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Título Principal */}
-          <h1 className="text-5xl md:text-7xl font-light text-amber-900 mb-8 leading-tight">
+          <h1 className="title-carppa title-carppa-h1 mb-8 leading-tight">
             O Hotel
           </h1>
 

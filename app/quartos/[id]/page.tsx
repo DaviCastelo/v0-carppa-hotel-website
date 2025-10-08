@@ -47,7 +47,7 @@ export default function RoomDetailPage({ params }: { params: { id: string } }) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <h1 className="text-4xl font-bold text-black mb-6">{room.name}</h1>
+              <h1 className="title-carppa title-carppa-h1 mb-6">{room.name}</h1>
 
               <p className="text-black text-lg leading-relaxed mb-8">{room.description}</p>
 
@@ -91,7 +91,7 @@ export default function RoomDetailPage({ params }: { params: { id: string } }) {
 
               {/* Amenities */}
               <div>
-                <h3 className="text-2xl font-semibold text-black mb-4">Comodidades</h3>
+                <h3 className="title-carppa title-carppa-h3 mb-4">Comodidades</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {room.amenities.map((amenity, index) => {
                     const IconComponent = amenityIcons[amenity as keyof typeof amenityIcons] || Coffee

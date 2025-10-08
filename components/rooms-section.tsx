@@ -11,7 +11,7 @@ export function RoomsSection() {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-sienna mb-4">Nossas Acomodações</h2>
+          <h2 className="title-carppa title-carppa-h2 mb-4">Nossas Acomodações</h2>
           <p className="text-dark-gray text-lg max-w-2xl mx-auto">
             Escolha o quarto perfeito para sua estadia. Todos os nossos quartos oferecem conforto, elegância e todas as
             comodidades necessárias.
@@ -40,7 +40,7 @@ export function RoomsSection() {
                 {/* Room Information */}
                 <div className={`space-y-6 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
                   <div>
-                    <h3 className="text-4xl font-bold text-dark-gray mb-2">{room.name.toUpperCase()}</h3>
+                    <h3 className="title-carppa title-carppa-h3 mb-2">{room.name.toUpperCase()}</h3>
                     <div className="flex items-center space-x-2 text-dark-gray mb-4">
                       <Users size={20} className="text-sienna" />
                       <span className="text-lg">Até {room.capacity} pessoas</span>

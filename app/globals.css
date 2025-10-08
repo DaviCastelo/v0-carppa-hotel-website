@@ -235,6 +235,27 @@
     animation: slideInRight 0.8s ease-out;
   }
 
+  /* Animações suaves para scroll com diferentes timings */
+  .scroll-animate-delay-100 {
+    transition-delay: 100ms;
+  }
+
+  .scroll-animate-delay-200 {
+    transition-delay: 200ms;
+  }
+
+  .scroll-animate-delay-300 {
+    transition-delay: 300ms;
+  }
+
+  .scroll-animate-delay-400 {
+    transition-delay: 400ms;
+  }
+
+  .scroll-animate-delay-500 {
+    transition-delay: 500ms;
+  }
+
   /* Animação de deslizar de baixo para cima para cards dos quartos */
   @keyframes slideInUp {
     from {
@@ -258,5 +279,32 @@
 
   .room-card:hover {
     transform: translateY(-8px);
+  }
+
+  /* Classe personalizada para títulos baseada no estilo "NA MELHOR LOCALIZAÇÃO DA PRAIA DE IRACEMA" */
+  .title-carppa {
+    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300; /* font-light */
+    color: #92400e; /* text-amber-900 */
+    line-height: 1.25; /* leading-tight */
+    letter-spacing: 0.025em; /* tracking-wide */
+    font-style: normal;
+  }
+
+  /* Variações de tamanho para diferentes níveis de títulos */
+  .title-carppa-h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  .title-carppa-h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  .title-carppa-h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  .title-carppa-h4 {
+    @apply text-xl md:text-2xl lg:text-3xl;
   }
 }

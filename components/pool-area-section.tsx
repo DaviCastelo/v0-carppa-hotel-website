@@ -29,7 +29,7 @@ export function PoolAreaSection() {
 
             {/* Conteúdo */}
             <div className="space-y-8 order-1 lg:order-2">
-              <h2 className="text-4xl md:text-5xl font-light text-amber-900 leading-tight">
+              <h2 className="title-carppa title-carppa-h2 leading-tight">
                 Área de lazer com piscina<br />
                 <span className="text-amber-600">na cobertura do hotel</span>
               </h2>
