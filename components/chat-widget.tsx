@@ -46,7 +46,7 @@ export function ChatWidget() {
     // Encontrar o quarto selecionado nos dados
     const selectedRoom = rooms.find(room => room.id === quotationData.roomType)
     
-    const baseUrl = selectedRoom?.reservationUrl || "https://book.omnibees.com/hotel/1393?c=1159&q=1393"
+    const baseUrl = selectedRoom?.reservationUrl || "https://app.otabuilder.com/carppahotel"
     
     // Converter datas do formato YYYY-MM-DD para DDMMYYYY
     const formatDateForUrl = (dateStr: string) => {

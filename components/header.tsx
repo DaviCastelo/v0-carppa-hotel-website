@@ -73,7 +73,7 @@ export function Header() {
           {/* Desktop Navigation - Right */}
           <div className="hidden md:flex items-center">
             <Button asChild className="bg-transparent hover:bg-amber-50 text-amber-800 border border-amber-800 rounded-none px-8 py-3 font-light uppercase text-base tracking-wide">
-              <Link href="/quartos">Reserve Já</Link>
+              <Link href="https://app.otabuilder.com/carppahotel" target="_blank" rel="noopener noreferrer">Reserve Já</Link>
             </Button>
           </div>
 
@@ -115,7 +115,7 @@ export function Header() {
                 asChild
                 className="bg-transparent hover:bg-amber-50 text-amber-800 border border-amber-800 rounded-none w-fit px-6 py-3 font-light uppercase text-base tracking-wide"
               >
-                <Link href="/quartos" onClick={() => setIsMenuOpen(false)}>
+                <Link href="https://app.otabuilder.com/carppahotel" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>
                   Reserve Já
                 </Link>
               </Button>

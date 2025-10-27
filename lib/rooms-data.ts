@@ -24,7 +24,7 @@ export const rooms = [
     ],
     rating: 4.5,
     reviews: 89,
-    reservationUrl: "https://book.omnibees.com/hotel/1393/room/33108?c=1159&q=1393",
+    reservationUrl: "https://app.otabuilder.com/carppahotel",
   },
   {
     id: "standard-triplo-casal", 
@@ -51,7 +51,7 @@ export const rooms = [
     ],
     rating: 4.6,
     reviews: 112,
-    reservationUrl: "https://book.omnibees.com/hotel/1393/room/33109?c=1159&q=1393",
+    reservationUrl: "https://app.otabuilder.com/carppahotel",
   },
   {
     id: "standard-quadruplo",
@@ -78,7 +78,7 @@ export const rooms = [
     ],
     rating: 4.7,
     reviews: 156,
-    reservationUrl: "https://book.omnibees.com/hotel/1393/room/62316?c=9354&q=1393&NRooms=1&CheckIn=12032026&CheckOut=13032026&ad=1&ch=0&lang=pt-BR&currencyId=16&version=4",
+    reservationUrl: "https://app.otabuilder.com/carppahotel",
   }
 ]
 
@@ -110,7 +110,7 @@ export const roomDetails = {
       "Café da manhã incluso",
       "Internet wi-fi incluso"
     ],
-    reservationUrl: "https://book.omnibees.com/hotel/1393/room/33108?c=1159&q=1393",
+    reservationUrl: "https://app.otabuilder.com/carppahotel",
   },
   "standard-triplo-casal": {
     name: "Standard Triplo",
@@ -139,7 +139,7 @@ export const roomDetails = {
       "Café da manhã incluso",
       "Internet wi-fi incluso"
     ],
-    reservationUrl: "https://book.omnibees.com/hotel/1393/room/33109?c=1159&q=1393",
+    reservationUrl: "https://app.otabuilder.com/carppahotel",
   },
   "standard-quadruplo": {
     name: "Standard Quádruplo",
@@ -168,6 +168,6 @@ export const roomDetails = {
       "Café da manhã incluso",
       "Internet wi-fi incluso"
     ],
-    reservationUrl: "https://book.omnibees.com/hotel/1393/room/62316?c=9354&q=1393&NRooms=1&CheckIn=12032026&CheckOut=13032026&ad=1&ch=0&lang=pt-BR&currencyId=16&version=4",
+    reservationUrl: "https://app.otabuilder.com/carppahotel",
   }
 }

@@ -284,11 +284,12 @@
   /* Classe personalizada para títulos baseada no estilo "NA MELHOR LOCALIZAÇÃO DA PRAIA DE IRACEMA" */
   .title-carppa {
     font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-weight: 300; /* font-light */
-    color: #92400e; /* text-amber-900 */
-    line-height: 1.25; /* leading-tight */
-    letter-spacing: 0.025em; /* tracking-wide */
+    font-weight: 200; /* font-extralight - mais fino como na aplicação Tinto */
+    color: #2C2C2C; /* cor escura como na aplicação Tinto */
+    line-height: 1.2; /* leading-tight */
+    letter-spacing: 0.05em; /* tracking-wider - mais espaçado como na aplicação Tinto */
     font-style: normal;
+    text-transform: uppercase; /* sempre maiúsculo como na aplicação Tinto */
   }
 
   /* Variações de tamanho para diferentes níveis de títulos */

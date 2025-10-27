@@ -18,17 +18,7 @@ export default function SobrePage() {
           style={{
             backgroundImage: `url('/IMG_4990.jpg')`,
           }}
-        >
-          {/* Efeito azul similar à hero section */}
-          <div className="absolute inset-0 bg-blue-500/30" />
-        </div>
-
-        {/* Title centralizado */}
-        <div className="absolute inset-0 z-10 flex items-center justify-center">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold uppercase tracking-wider text-white drop-shadow-lg">
-            O Hotel
-          </h1>
-        </div>
+        />
       </section>
 
       {/* Video Section */}
