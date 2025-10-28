@@ -63,7 +63,7 @@ export function LocationSection() {
                     <p>WhatsApp: <a href="https://wa.me/558534532000" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">(85) 3453-2000</a></p>
                     <p className="flex items-center gap-2">
                       <Mail className="h-4 w-4" />
-                      contato@carppahotel.com.br
+                      reservas@carppahotel.com.br
                     </p>
                   </div>
                 </CardDescription>
