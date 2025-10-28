@@ -123,6 +123,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
   }
 }
 
@@ -307,5 +313,53 @@
 
   .title-carppa-h4 {
     @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  /* CSS para corrigir overflow horizontal do widget Otabuilder */
+  #otabuilder-widget {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  #otabuilder-widget * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Garantir que formulários não causem overflow horizontal */
+  .otabuilder-widget form,
+  .otabuilder-widget .form-container,
+  .otabuilder-widget .search-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* Responsividade para campos do formulário */
+  .otabuilder-widget input,
+  .otabuilder-widget select,
+  .otabuilder-widget button {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 2px !important;
+  }
+
+  /* Layout responsivo para campos lado a lado */
+  @media (max-width: 768px) {
+    .otabuilder-widget .form-row,
+    .otabuilder-widget .form-group {
+      flex-direction: column !important;
+      width: 100% !important;
+    }
+    
+    .otabuilder-widget .form-row > *,
+    .otabuilder-widget .form-group > * {
+      width: 100% !important;
+      margin-bottom: 8px !important;
+    }
   }
 }
