@@ -36,7 +36,7 @@ export function Footer() {
               {/* Tinto Hotel */}
               <div className="pt-4">
                 <p className="text-sm text-gray-600 mb-2">Conheça também</p>
-                <div>
+                <div className="space-y-2">
                   <Image 
                     src="/images/tintto-logo.webp" 
                     alt="Tinto Hotel" 
@@ -44,6 +44,7 @@ export function Footer() {
                     height={30} 
                     className="h-8 w-auto" 
                   />
+                  <p className="text-xs text-gray-500">Desenvolvido por GVA Soluções Inteligentes</p>
                 </div>
               </div>
             </div>
