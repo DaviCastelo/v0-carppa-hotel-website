@@ -8,28 +8,28 @@ export function ServicesSection() {
       title: "Recepção",
       subtitle: "24 Horas",
       description: "",
-      bgImage: "https://carppahotel.com.br/wp-content/themes/stamina/assets/img/saladetv.jpg"
+      bgImage: "/images/saladetv.jpg"
     },
     {
       icon: Waves,
       title: "Piscina na",
       subtitle: "Cobertura",
       description: "",
-      bgImage: "https://carppahotel.com.br/wp-content/themes/stamina/assets/img/piscina.jpg"
+      bgImage: "/images/piscina.jpg"
     },
     {
       icon: Heart,
       title: "Ampla",
       subtitle: "Recepção",
       description: "",
-      bgImage: "https://carppahotel.com.br/wp-content/themes/stamina/assets/img/recepcao.jpg"
+      bgImage: "/images/recepcao.jpg"
     },
     {
       icon: Utensils,
       title: "Restaurante com",
       subtitle: "Café da Manhã",
       description: "",
-      bgImage: "https://carppahotel.com.br/wp-content/themes/stamina/assets/img/cafedamanha.jpg"
+      bgImage: "/images/cafedamanha.jpg"
     }
   ]
 
@@ -65,37 +65,32 @@ export function ServicesSection() {
                     className="object-cover brightness-125 contrast-90 group-hover:brightness-100 group-hover:contrast-100 group-hover:scale-110 transition-all duration-700 ease-out"
                   />
                    {/* Efeito azul similar à hero section */}
-                   <div className="absolute inset-0 bg-blue-500/50 group-hover:bg-blue-500/70 transition-all duration-700 ease-out"></div>
+                   <div className="absolute inset-0 bg-blue-500/60 group-hover:bg-blue-500/80 transition-all duration-700 ease-out"></div>
                    {/* White blur overlay for subtle effect */}
-                   <div className="absolute inset-0 bg-white/40 group-hover:bg-white/5 transition-all duration-700 ease-out"></div>
+                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-700 ease-out"></div>
                 </div>
 
                  {/* Content */}
                  <div className="relative z-10 p-6 text-center h-full flex flex-col justify-center">
                    {/* Icon - White color by default */}
-                   <div className="inline-flex items-center justify-center w-20 h-20 md:w-20 md:h-20 mb-6 md:mb-6 group-hover:scale-110 transition-all duration-500 ease-out mx-auto">
-                     <IconComponent 
-                       size={56} 
-                       className="text-white drop-shadow-lg transition-all duration-500 ease-out md:hidden" 
-                       strokeWidth={1.5} 
-                     />
+                   <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 mb-6 md:mb-6 group-hover:scale-110 transition-all duration-500 ease-out mx-auto">
                      <IconComponent 
                        size={48} 
-                       className="text-white drop-shadow-lg transition-all duration-500 ease-out hidden md:block" 
+                       className="text-white drop-shadow-lg transition-all duration-500 ease-out" 
                        strokeWidth={1.5} 
                      />
                    </div>
 
                    {/* Title and Subtitle - White text by default */}
                    <div className="mb-4">
-                     <h3 className="text-2xl md:text-2xl font-bold text-white mb-1 drop-shadow-lg transition-all duration-500 ease-out">
+                     <h3 className="text-xl md:text-2xl font-bold text-white mb-1 drop-shadow-lg transition-all duration-500 ease-out">
                        {service.title}
                      </h3>
-                     <h4 className="text-xl md:text-xl font-semibold text-white drop-shadow-lg transition-all duration-500 ease-out">
+                     <h4 className="text-lg md:text-xl font-semibold text-white drop-shadow-lg transition-all duration-500 ease-out">
                        {service.subtitle}
                      </h4>
                      {service.description && (
-                       <p className="text-lg md:text-lg font-semibold text-white drop-shadow-lg mt-1 transition-all duration-500 ease-out">
+                       <p className="text-base md:text-lg font-semibold text-white drop-shadow-lg mt-1 transition-all duration-500 ease-out">
                          {service.description}
                        </p>
                      )}
