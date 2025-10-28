@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Experimente o melhor da hospitalidade no Carppa Hotel. Quartos confortáveis, localização privilegiada e atendimento excepcional em Fortaleza.",
   generator: "v0.app",
 }
-//teste
+//teste 01
 export default function RootLayout({
   children,
 }: Readonly<{
