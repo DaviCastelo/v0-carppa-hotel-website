@@ -58,7 +58,7 @@ export function BookingForm() {
     initOtabuilderWidget(
       'DzNFAJY6GSKK-AikkxX6u', // storefrontId do Carppa Hotel
       'otabuilder-widget', // widget container
-      'HORIZONTAL' // orientation
+      'VERTICAL' // orientation - mudado para VERTICAL para mobile
     )
     
     // Carregar o script do widget
@@ -83,7 +83,7 @@ export function BookingForm() {
         </div>
         
         {/* Widget do Otabuilder */}
-        <div id="otabuilder-widget" className="min-h-[80px] flex items-center justify-center">
+        <div id="otabuilder-widget" className="min-h-[80px] flex items-center justify-center overflow-hidden">
           <div className="flex items-center space-x-2 text-gray-500">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-amber-600"></div>
             <span>Carregando formulário de reserva...</span>

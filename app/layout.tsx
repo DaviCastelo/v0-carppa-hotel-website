@@ -21,6 +21,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        {/* Meta viewport para evitar scroll horizontal no mobile */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=GT-P8QTLB3X"></script>
         <script
