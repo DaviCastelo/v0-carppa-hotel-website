@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Clock, Phone, Mail } from "lucide-react"
 
@@ -60,7 +62,21 @@ export function LocationSection() {
                 <CardDescription className="text-gray-700 text-lg">
                   <div className="space-y-2">
                     <p>Telefone: <a href="tel:+558534532000" className="text-primary hover:underline">(85) 3453-2000</a></p>
-                    <p>WhatsApp: <a href="https://wa.me/558534532000" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">(85) 3453-2000</a></p>
+                    <p>WhatsApp: <a 
+                      href="https://wa.me/558534532000" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-primary hover:underline"
+                      onClick={() => {
+                        if (typeof window !== 'undefined' && (window as any).gtag) {
+                          (window as any).gtag('event', 'conversion', {
+                            'send_to': 'AW-16951550720/QWGHCPHp87QbELTVl5M_',
+                            'value': 1.0,
+                            'currency': 'BRL'
+                          });
+                        }
+                      }}
+                    >(85) 3453-2000</a></p>
                     <p className="flex items-center gap-2">
                       <Mail className="h-4 w-4" />
                       reservas@carppahotel.com.br
