@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { MessageCircle, X, Calendar, MapPin, Building, BookOpen, Send, ChevronLeft, ChevronRight, Maximize2, Minimize2 } from "lucide-react"
@@ -43,10 +44,13 @@ export function ChatWidget() {
   ]
 
   const generateQuotationUrl = () => {
-    // Encontrar o quarto selecionado nos dados
-    const selectedRoom = rooms.find(room => room.id === quotationData.roomType)
+    // URL base do motor de reserva do Carppa Hotel
+    const baseUrl = "https://app.otabuilder.com/carppahotel"
     
-    const baseUrl = selectedRoom?.reservationUrl || "https://app.otabuilder.com/carppahotel"
+    // Se não há datas selecionadas, retornar URL base
+    if (!quotationData.checkIn || !quotationData.checkOut) {
+      return baseUrl
+    }
     
     // Converter datas do formato YYYY-MM-DD para DDMMYYYY
     const formatDateForUrl = (dateStr: string) => {
@@ -54,17 +58,11 @@ export function ChatWidget() {
       return `${day}${month}${year}`
     }
     
-    const params = new URLSearchParams({
-      CheckIn: formatDateForUrl(quotationData.checkIn),
-      CheckOut: formatDateForUrl(quotationData.checkOut),
-      NRooms: quotationData.rooms.toString(),
-      ad: quotationData.adults.toString(),
-      ch: quotationData.children.toString(),
-      lang: 'pt-BR',
-      currencyId: '16',
-      version: '4'
-    })
-    return `${baseUrl}&${params.toString()}`
+    // Parâmetros para o Otabuilder (formato mais simples)
+    const checkIn = formatDateForUrl(quotationData.checkIn)
+    const checkOut = formatDateForUrl(quotationData.checkOut)
+    
+    return `${baseUrl}?CheckIn=${checkIn}&CheckOut=${checkOut}&NRooms=${quotationData.rooms}&ad=${quotationData.adults}&ch=${quotationData.children}`
   }
 
   const generateGoogleMapsUrl = () => {
@@ -78,6 +76,19 @@ export function ChatWidget() {
     const message = `Olá! Gostaria de falar com o atendimento do Carppa Hotel.\n\nResumo da minha solicitação:\n${supportMessage}`
     const encodedMessage = encodeURIComponent(message)
     return `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+  }
+
+  const handleWhatsAppClick = () => {
+    // Disparar evento de conversão do Google Ads
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+        'send_to': 'AW-16951550720/QWGHCPHp87QbELTVl5M_',
+        'value': 1.0,
+        'currency': 'BRL'
+      });
+    }
+    // Abrir WhatsApp
+    window.open(generateWhatsAppUrl(), '_blank');
   }
 
   const formatDate = (dateString: string) => {
@@ -109,7 +120,7 @@ export function ChatWidget() {
       setQuotationData(prev => ({ ...prev, checkIn: dateStr }))
     } else if (!quotationData.checkOut && dateStr > quotationData.checkIn) {
       setQuotationData(prev => ({ ...prev, checkOut: dateStr }))
-      setQuotationStep('adults')
+      setQuotationStep('complete')
     }
   }
 
@@ -167,7 +178,13 @@ export function ChatWidget() {
           <Card className="bg-white shadow-2xl border-0 overflow-hidden h-full flex flex-col">
             {/* Header */}
             <div className="bg-primary text-primary-foreground px-4 py-4 flex items-center justify-between flex-shrink-0">
-              <h3 className="font-semibold text-lg">CARPPA HOTEL</h3>
+              <Image 
+                src="/images/carppa-logo.webp" 
+                alt="Carppa Hotel" 
+                width={120} 
+                height={40} 
+                className="h-8 w-auto" 
+              />
               <div className="flex items-center space-x-2">
                 <Button
                   variant="ghost"
@@ -226,40 +243,10 @@ export function ChatWidget() {
                     </>
                   )}
 
-                  {quotationStep === 'roomType' && (
-                    <>
-                      <p className="text-sm text-gray-800 mb-4">
-                        Qual tipo de quarto você prefere?
-                      </p>
-                      <div className="space-y-2 mb-3">
-                        {rooms.map((room) => (
-                          <Button
-                            key={room.id}
-                            variant={quotationData.roomType === room.id ? "default" : "outline"}
-                            size="sm"
-                            onClick={() => {
-                              setQuotationData(prev => ({ ...prev, roomType: room.id }))
-                              setQuotationStep('rooms')
-                            }}
-                            className="w-full justify-start h-10"
-                          >
-                            <Building size={16} className="mr-2" />
-                            <div className="text-left">
-                              <div className="font-semibold">{room.name}</div>
-                              <div className="text-xs text-gray-600">
-                                R$ {room.price}/noite • {room.capacity} • {room.beds}
-                              </div>
-                            </div>
-                          </Button>
-                        ))}
-                      </div>
-                    </>
-                  )}
-
                   {quotationStep === 'dates' && (
                     <>
                       <p className="text-sm text-gray-800 mb-4">
-                        Perfeito! Agora escolha as datas de check-in e check-out:
+                        Perfeito! Vamos fazer sua cotação. Primeiro, escolha as datas de check-in e check-out:
                       </p>
                       
                       {/* Calendário */}
@@ -305,6 +292,45 @@ export function ChatWidget() {
                           <p>Check-out: {formatDate(quotationData.checkOut)}</p>
                         </div>
                       )}
+                      
+                      {quotationData.checkIn && quotationData.checkOut && (
+                        <Button
+                          onClick={() => setQuotationStep('complete')}
+                          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                        >
+                          Ver Cotação Final
+                        </Button>
+                      )}
+                    </>
+                  )}
+
+                  {quotationStep === 'roomType' && (
+                    <>
+                      <p className="text-sm text-gray-800 mb-4">
+                        Qual tipo de quarto você prefere?
+                      </p>
+                      <div className="space-y-2 mb-3">
+                        {rooms.map((room) => (
+                          <Button
+                            key={room.id}
+                            variant={quotationData.roomType === room.id ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => {
+                              setQuotationData(prev => ({ ...prev, roomType: room.id }))
+                              setQuotationStep('rooms')
+                            }}
+                            className="w-full justify-start h-10"
+                          >
+                            <Building size={16} className="mr-2" />
+                            <div className="text-left">
+                              <div className="font-semibold">{room.name}</div>
+                              <div className="text-xs text-gray-600">
+                                {room.price}/noite • {room.capacity} • {room.beds}
+                              </div>
+                            </div>
+                          </Button>
+                        ))}
+                      </div>
                     </>
                   )}
 
@@ -321,7 +347,7 @@ export function ChatWidget() {
                             size="sm"
                             onClick={() => {
                               setQuotationData(prev => ({ ...prev, rooms: num }))
-                              setQuotationStep('dates')
+                              setQuotationStep('adults')
                             }}
                             className="h-8 w-8"
                           >
@@ -369,7 +395,7 @@ export function ChatWidget() {
                             size="sm"
                             onClick={() => {
                               setQuotationData(prev => ({ ...prev, children: num }))
-                              setQuotationStep('complete')
+                              setQuotationStep('dates')
                             }}
                             className="h-8 w-8"
                           >
@@ -391,7 +417,7 @@ export function ChatWidget() {
                           <div className="flex justify-between">
                             <span className="text-gray-600">Tipo de Quarto:</span>
                             <span className="font-semibold">
-                              {rooms.find(room => room.id === quotationData.roomType)?.name || 'Quarto selecionado'}
+                              {rooms.find(room => room.id === quotationData.roomType)?.name || 'Ver opções disponíveis'}
                             </span>
                           </div>
                           <div className="flex justify-between">
@@ -417,7 +443,7 @@ export function ChatWidget() {
                         onClick={() => window.open(generateQuotationUrl(), '_blank')}
                         className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                       >
-                        Ver Cotação Completa
+                        Fazer Reserva
                       </Button>
                       <Button
                         variant="outline"
@@ -499,16 +525,7 @@ export function ChatWidget() {
                         {supportMessage.trim() && (
                           <div className="space-y-2">
                             <Button
-                              onClick={() => {
-                                if (typeof window !== 'undefined' && (window as any).gtag) {
-                                  (window as any).gtag('event', 'conversion', {
-                                    'send_to': 'AW-16951550720/QWGHCPHp87QbELTVl5M_',
-                                    'value': 1.0,
-                                    'currency': 'BRL'
-                                  });
-                                }
-                                window.open(generateWhatsAppUrl(), '_blank');
-                              }}
+                              onClick={handleWhatsAppClick}
                               className="w-full bg-green-600 hover:bg-green-700 text-white"
                             >
                               <MessageCircle size={16} className="mr-2" />
@@ -567,7 +584,7 @@ export function ChatWidget() {
 
             {/* Footer */}
             <div className="px-4 py-2 bg-gray-100 text-center flex-shrink-0">
-              <p className="text-xs text-gray-500">Powered by Omnibees</p>
+              <p className="text-xs text-gray-500">Powered by Otabuilder</p>
             </div>
           </Card>
         </div>

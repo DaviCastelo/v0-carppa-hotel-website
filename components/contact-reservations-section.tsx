@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Instagram, Phone, Mail, MapPin } from "lucide-react"
+import { Instagram, Phone, Mail, MapPin, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function ContactReservationsSection() {
@@ -34,6 +34,23 @@ export function ContactReservationsSection() {
                   className="flex items-center justify-center w-12 h-12 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
                 >
                   <Phone size={24} />
+                </a>
+                <a 
+                  href="https://wa.me/558534532000" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                      (window as any).gtag('event', 'conversion', {
+                        'send_to': 'AW-16951550720/QWGHCPHp87QbELTVl5M_',
+                        'value': 1.0,
+                        'currency': 'BRL'
+                      });
+                    }
+                  }}
+                  className="flex items-center justify-center w-12 h-12 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                >
+                  <MessageCircle size={24} />
                 </a>
                 <a 
                   href="mailto:reservas@carppahotel.com.br" 
