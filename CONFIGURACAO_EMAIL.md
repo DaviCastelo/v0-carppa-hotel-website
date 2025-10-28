@@ -57,12 +57,12 @@ Para usar `noreply@carppahotel.com` em vez de `noreply@resend.dev`:
    ```
 3. **Acesse o site** e vá até o formulário de contato
 4. **Preencha os campos** e clique em "ENVIAR"
-5. **Verifique o email** em `contato@carppahotel.com`
+5. **Verifique o email** em `reservas@carppahotel.com.br`
 
 ## 📧 **Estrutura do Email Enviado**
 
 **De:** `Carppa Hotel <noreply@carppahotel.com>`  
-**Para:** `contato@carppahotel.com`  
+**Para:** `reservas@carppahotel.com.br`  
 **Assunto:** `Nova mensagem de contato - [Nome do usuário]`
 
 ### **Conteúdo:**
@@ -89,7 +89,7 @@ Para usar `noreply@carppahotel.com` em vez de `noreply@resend.dev`:
 
 Agora **qualquer visitante** do site pode:
 - ✅ Preencher o formulário de contato
-- ✅ Enviar mensagens para `contato@carppahotel.com`
+- ✅ Enviar mensagens para `reservas@carppahotel.com.br`
 - ✅ Receber confirmação de envio
 - ✅ **Sem necessidade de credenciais pessoais!**
 

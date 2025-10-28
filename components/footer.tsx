@@ -73,7 +73,7 @@ export function Footer() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail size={20} className="text-sienna" />
-                  <span className="text-sienna">contato@carppahotel.com</span>
+                  <span className="text-sienna">reservas@carppahotel.com.br</span>
                 </div>
               </div>
             </div>
