@@ -44,7 +44,7 @@ export function Footer() {
                     height={30} 
                     className="h-8 w-auto" 
                   />
-                  <p className="text-xs text-gray-500">Desenvolvido por GVA Soluções Inteligentes</p>
+                  <p className="text-sm text-gray-600 font-medium">Desenvolvido por GVA Soluções Inteligentes</p>
                 </div>
               </div>
             </div>
