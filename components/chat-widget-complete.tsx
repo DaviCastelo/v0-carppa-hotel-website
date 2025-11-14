@@ -72,7 +72,7 @@ export function ChatWidget() {
   }
 
   const generateWhatsAppUrl = () => {
-    const phoneNumber = "558534532000"
+    const phoneNumber = "558581600354"
     const message = `Olá! Gostaria de falar com o atendimento do Carppa Hotel.\n\nResumo da minha solicitação:\n${supportMessage}`
     const encodedMessage = encodeURIComponent(message)
     return `https://wa.me/${phoneNumber}?text=${encodedMessage}`
