@@ -63,7 +63,7 @@ export function LocationSection() {
                   <div className="space-y-2">
                     <p>Telefone: <a href="tel:+558534532000" className="text-primary hover:underline">(85) 3453-2000</a></p>
                     <p>WhatsApp: <a 
-                      href="https://wa.me/558534532000" 
+                      href="https://wa.me/558581600354" 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="text-primary hover:underline"

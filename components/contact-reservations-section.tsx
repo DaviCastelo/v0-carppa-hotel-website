@@ -36,7 +36,7 @@ export function ContactReservationsSection() {
                   <Phone size={24} />
                 </a>
                 <a 
-                  href="https://wa.me/558534532000" 
+                  href="https://wa.me/558581600354" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   onClick={() => {
