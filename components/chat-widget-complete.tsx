@@ -4,11 +4,11 @@ import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { MessageCircle, X, Calendar, MapPin, Building, BookOpen, Send, ChevronLeft, ChevronRight, Maximize2, Minimize2 } from "lucide-react"
+import { MessageCircle, X, Calendar, MapPin, Building, BookOpen, Send, ChevronLeft, ChevronRight, Maximize2, Minimize2, Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import { rooms } from "@/lib/rooms-data"
 
-type QuotationStep = 'initial' | 'dates' | 'roomType' | 'rooms' | 'adults' | 'children' | 'complete' | 'location' | 'support'
+type QuotationStep = 'initial' | 'dates' | 'roomType' | 'rooms' | 'adults' | 'children' | 'complete' | 'location' | 'support' | 'contact'
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
@@ -35,6 +35,11 @@ export function ChatWidget() {
       icon: MapPin,
       label: "Localização",
       action: () => setQuotationStep('location')
+    },
+    {
+      icon: Phone,
+      label: "Contatos",
+      action: () => setQuotationStep('contact')
     },
     {
       icon: MessageCircle,
@@ -554,6 +559,66 @@ export function ChatWidget() {
                             ← Voltar
                           </Button>
                         )}
+                      </div>
+                    </>
+                  )}
+
+                  {quotationStep === 'contact' && (
+                    <>
+                      <p className="text-sm text-gray-800 mb-4">
+                        Aqui estão nossos contatos:
+                      </p>
+                      
+                      <div className="bg-gray-50 rounded-lg p-4 mb-4 space-y-3">
+                        <div className="flex items-start space-x-3">
+                          <Phone className="text-primary mt-1 flex-shrink-0" size={18} />
+                          <div>
+                            <p className="text-sm text-gray-800 font-semibold">Telefone Central de Reservas Fixo</p>
+                            <p className="text-sm text-gray-700">85 3453-2000</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <MessageCircle className="text-green-600 mt-1 flex-shrink-0" size={18} />
+                          <div>
+                            <p className="text-sm text-gray-800 font-semibold">WhatsApp Central de Reservas</p>
+                            <p className="text-sm text-gray-700">85 98160-0354</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <Phone className="text-primary mt-1 flex-shrink-0" size={18} />
+                          <div>
+                            <p className="text-sm text-gray-800 font-semibold">Telefone Recepção Fixo</p>
+                            <p className="text-sm text-gray-700">85 3453-2000</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <Mail className="text-primary mt-1 flex-shrink-0" size={18} />
+                          <div>
+                            <p className="text-sm text-gray-800 font-semibold">E-mail</p>
+                            <p className="text-sm text-gray-700">reservas@carppahotel.com.br</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Button
+                          onClick={() => window.open('https://wa.me/5585981600354', '_blank')}
+                          className="w-full bg-green-600 hover:bg-green-700 text-white"
+                        >
+                          <MessageCircle size={16} className="mr-2" />
+                          Abrir WhatsApp
+                        </Button>
+                        
+                        <Button
+                          variant="outline"
+                          onClick={() => setQuotationStep('initial')}
+                          className="w-full"
+                        >
+                          ← Voltar
+                        </Button>
                       </div>
                     </>
                   )}

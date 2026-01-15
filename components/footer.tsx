@@ -1,4 +1,3 @@
-import Link from "next/link"
 import Image from "next/image"
 import { Instagram, Mail, Phone } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
@@ -44,7 +43,6 @@ export function Footer() {
                     height={30} 
                     className="h-8 w-auto" 
                   />
-                  <p className="text-sm text-gray-600 font-medium">Desenvolvido por GVA Soluções Inteligentes</p>
                 </div>
               </div>
             </div>
@@ -65,15 +63,19 @@ export function Footer() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone size={20} className="text-sienna" />
-                  <span className="text-sienna">Central de Reservas: (85) 3453-2000</span>
+                  <span className="text-sienna">Telefone Central de Reservas Fixo - 85 3453-2000</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone size={20} className="text-sienna" />
-                  <span className="text-sienna">Recepção: (85) 3453-2000</span>
+                  <span className="text-sienna">WhatsApp Central de Reservas - 85 98160-0354</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Phone size={20} className="text-sienna" />
+                  <span className="text-sienna">Telefone Recepção Fixo - 85 3453-2000</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail size={20} className="text-sienna" />
-                  <span className="text-sienna">reservas@carppahotel.com.br</span>
+                  <span className="text-sienna">E-mail - reservas@carppahotel.com.br</span>
                 </div>
               </div>
             </div>
